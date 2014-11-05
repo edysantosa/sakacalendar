@@ -1,4 +1,9 @@
+#sakacalendar 0.3
 
+Copyright (c) 2012 - 2014 Edy Santosa Putra
+sakacalendar is licensed under the GNU General Public License, version 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+
+sakacalendar adalah java package untuk melakukan perhitungan sistem penanggalan Saka.
 package ini dapat melakukan perhitungan penanggalan Saka antara lain :
 - Pawukon
 - Wewaran
@@ -62,7 +67,7 @@ Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang tela
 
 ```java
 hitungWewaran(SakaCalendar tgl)
-'''
+```
 
 Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel-variabel wewaran beserta urip Saptawara dan urip Pancawara, antara lain :
 
@@ -84,7 +89,7 @@ Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang tela
 
 ```java
 hitungWuku(SakaCalendar tgl)
-'''
+```
 
 Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel noWuku dan uripWuku. Wuku Sinta - Watugunung diuurutkan dengan noWuku dari 1-30, beserta uripnya pada uripWuku 
 
@@ -93,7 +98,7 @@ Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang tela
 
 ```java
 hitungSaka(SakaCalendar tgl)
-'''
+```
 
 Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel antara lain :
 
