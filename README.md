@@ -55,6 +55,20 @@ System.out.println((tanggal.isNgunaratri) ? "Ngunaratri" : "Bukan ngunaratri");
 System.out.println((tanggal.isNampih) ? "Nampih sasih" : "Bukan nampih sasih");
 ```
 
+Outputnya :
+```java
+Tanggal 01-06-2014
+No Wuku 13
+No Pancawara 1
+No Saptawara 0
+tahun Saka 1936
+No Sasih 12
+Penanggal 4
+Penanggal
+Bukan ngunaratri
+Bukan nampih sasih
+```
+
 ## Detail Fungsi
 ### Menghitung Wuku
 
@@ -72,18 +86,18 @@ hitungWewaran(SakaCalendar tgl)
 
 Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel-variabel wewaran beserta urip Saptawara dan urip Pancawara, antara lain :
 
-- uripPancawara;
-- uripSaptawara;
-- noEkawara;
-- noDwiwara;
-- noTriwara;
-- noCaturwara;
-- noPancawara;
-- noSadwara;
-- noSaptawara;
-- noAstawara;
-- noSangawara;
-- noDasawara;
+- uripPancawara
+- uripSaptawara
+- noEkawara
+- noDwiwara
+- noTriwara
+- noCaturwara
+- noPancawara
+- noSadwara
+- noSaptawara
+- noAstawara
+- noSangawara
+- noDasawara
 
 Selain nilai untuk urip pancawara dan saptawara yang merupakan nilai pasti, nilai integer dari no wewaran merepresentasikan data sebagai berikut :
 
@@ -426,8 +440,8 @@ Dimana nilai return-nya :
 
 
 ## Pustaka
-Class pada package ini dimbil dari skripsi S1 saya pada stikom Bali http://digilib.stikom-bali.ac.id/Skripsi_TA.aspx?appid=003259
+Class pada package ini dimbil dari skripsi S1 saya pada STIKOM Bali http://digilib.stikom-bali.ac.id/Skripsi_TA.aspx?appid=003259
 
 Buku-buku yang dijadikan acuan adalah "Dasar Wariga", dan "Tenung Wariga" karangan I.B. Putra Manik Aryana, serta "Pokok-pokok Wariga" karangan I.B. Supartha Ardana.
 
-Selain itu juga banyak diambil informasi dari http://www.babadbali.com/ dan http://www.kalenderbali.org/
+Selain itu juga banyak diambil informasi dari http://www.babadbali.com/, http://www.kalenderbali.org/, dan http://www.balabali.com/id/balabali-kalender-id
