@@ -67,7 +67,6 @@ Penanggal 4
 Penanggal
 Bukan ngunaratri
 Bukan nampih sasih
-hitungPararasan 4
 ```
 
 ## Detail Fungsi
