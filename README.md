@@ -213,7 +213,8 @@ Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang tela
 - isNampih
 
 
-tahunSaka memberikan angka Tahun Saka. http://www.kalenderbali.org/ memberikan angka yang merepresentasikan sasih dengan urutan :
+tahunSaka memberikan angka Tahun Saka. 
+noSasih memberikan angka yang merepresentasikan sasih dengan nilai :
 
 - 1 Kasa
 - 2 Karo
