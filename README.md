@@ -21,7 +21,7 @@ package ini dapat melakukan perhitungan penanggalan Saka antara lain :
 
 Package ini terdiri dari class SakaCalendar yang berfungsi sebagai container atribut-atribut penanggalan saka, dan SakaCalendarCalculator yang berfungsi melakukan perhitungan atribut-atribut tersebut. 
 
-## Penggunaan Dasar:
+## Penggunaan Dasar
 
 Setalah mengimport package ini inisialisasi kedua class. Inisialisasi class SakaCalendar sama dengan pada class GregorianCalendar Java. 
 
