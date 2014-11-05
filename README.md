@@ -112,6 +112,13 @@ Selain nilai untuk urip pancawara dan saptawara yang merupakan nilai pasti, nila
 
 
 #### Pancawara
+
+- 1 Umanis
+- 2 Paing
+- 3 Pon
+- 4 Wage	
+- 5 Kliwon
+
 #### Sadwara
 
 - 1 Tungleh
@@ -122,6 +129,15 @@ Selain nilai untuk urip pancawara dan saptawara yang merupakan nilai pasti, nila
 - 6 Maulu
 
 #### Saptawara
+
+- 0 Redite
+- 1 Soma
+- 2 Anggara
+- 3 Buda
+- 4 Wraspati
+- 5 Sukra
+- 6 Saniscara
+
 #### Astawara
 
 - 1 Sri
