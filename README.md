@@ -1,6 +1,7 @@
 #sakacalendar 0.3
 
 Copyright (c) 2012 - 2014 Edy Santosa Putra
+
 sakacalendar is licensed under the GNU General Public License, version 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 
 sakacalendar adalah java package untuk melakukan perhitungan sistem penanggalan Saka.
