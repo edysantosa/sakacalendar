@@ -103,9 +103,9 @@ Selain nilai untuk urip pancawara dan saptawara yang merupakan nilai pasti, nila
 
 #### Ekawara
 
-1 Pasah
-2 Beteng
-3 kajeng
+- 1 Pasah
+- 2 Beteng
+- 3 kajeng
 
 #### Dwiwara
 
