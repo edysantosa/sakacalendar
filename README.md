@@ -417,7 +417,7 @@ Dimana nilai return-nya :
 - 3 Sanggar waringin
 - 4 Mantri sinaroja
 - 5 Macam katawan
-- 0 -> 6 Nuju pati
+- 6 Nuju pati
 
 ## Menghitung Zodiak
 
