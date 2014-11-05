@@ -85,6 +85,78 @@ Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang tela
 - noSangawara;
 - noDasawara;
 
+Selain nilai untuk urip pancawara dan saptawara yang merupakan nilai pasti, nilai integer dari no wewaran merepresentasikan data sebagai berikut :
+
+#### Ekawara
+
+1 Pasah
+2 Beteng
+3 kajeng
+
+#### Dwiwara
+
+- 1 Luang
+- 2 Bukan luang (kosong)
+
+#### Triwara
+
+- 1 Menga
+- 2 Pepet
+
+#### Caturwara
+
+- 1 Sri
+- 2 Laba
+- 3 Jaya
+- 4 Menala
+
+
+#### Pancawara
+#### Sadwara
+
+- 1 Tungleh
+- 2 Aryang
+- 3 Urukung
+- 4 Paniron
+- 5 Was
+- 6 Maulu
+
+#### Saptawara
+#### Astawara
+
+- 1 Sri
+- 2 Indra
+- 3 Guru
+- 4 Yama
+- 5 Ludra
+- 6 Brahma
+- 7 kala
+- 8 Uma
+
+#### Sangawara
+
+- 1 Dangu
+- 2 Jangur
+- 3 Gigis
+- 4 Nohan
+- 5 Ogan
+- 6 Erangan
+- 7 Urungan
+- 8 Tulus
+- 9 Dadi
+
+#### Dasawara
+
+- 1 Pandita
+- 2 Pati
+- 3 Suka
+- 4 Duka	
+- 5 Sri
+- 6 Manuh
+- 7 Manusa
+- 8 Raja
+- 9 Dewa
+- 10 Raksasa
 
 ### Menghitung Wuku
 
@@ -162,7 +234,7 @@ Dimana nilai return-nya :
 - 3 Sato
 - 4 Patra
 - 5 Wong
-- 0 -> 6 Paksi
+- 6 Paksi
 
 
 ## Menghitung Pewatekan Alit (Catur)
@@ -174,7 +246,7 @@ Dimana nilai return-nya :
 - 1 Uler
 - 2 Gajah
 - 3 Lembu
-- 0 -> 4 Lintah
+- 4 Lintah
 
 
 ## Menghitung Pewatekan Madya (Panca)
@@ -187,7 +259,7 @@ Dimana nilai return-nya :
 - 2 Watu
 - 3 Buta
 - 4 Suku
-- 0 ->5 Wong
+- 5 Wong
 
 
 ## Menghitung Eka Jala Rsi
@@ -196,15 +268,15 @@ Dimana nilai return-nya :
 int ekajalarsi = calc.hitungEkaJalaRsi(tanggal)
 ```
 Dimana nilai return-nya :
-- 1	Bagna mapasah
-- 2	Bahu putra
-- 3	Buat astawa
-- 4	Buat lara
-- 5	Buat merang
-- 6	Buat sebet
-- 7	Buat kingking
-- 8	Buat suka
-- 9	Dahat kingking
+- 1 Bagna mapasah
+- 2 Bahu putra
+- 3 Buat astawa
+- 4 Buat lara
+- 5 Buat merang
+- 6 Buat sebet
+- 7 Buat kingking
+- 8 Buat suka
+- 9 Dahat kingking
 - 10 Kamaranan
 - 11 Kamretaan
 - 12 Kasobagian
