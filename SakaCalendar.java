@@ -20,7 +20,6 @@
 */
 
 package com.edysantosa.sakacalendar;
-
 import java.util.GregorianCalendar;
 
 public class SakaCalendar extends GregorianCalendar {
