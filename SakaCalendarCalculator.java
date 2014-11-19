@@ -1243,12 +1243,6 @@ public class SakaCalendarCalculator {
 		
 			//mengetahui jumlah ngunaratri
 			
-			/***KODE LAMA***
-			for (int i = 0;i<pivot.noNgunaratri;i+=63)      
-			{
-				mulai = i; // Mengetahui pengalantaka terakhir
-			}
-			*/
 			if (pivot.noNgunaratri > 63){
 				if (pivot.noNgunaratri % 63 == 0){
 					mulai = pivot.noNgunaratri-63;
@@ -1259,11 +1253,6 @@ public class SakaCalendarCalculator {
 			
 			tgl.noNgunaratri = pivot.noNgunaratri + bedaHari; //Masukkan no ngunaratri
 			
-			/***KODE LAMA***
-			for (int i = (mulai + 63);i < (tgl.noNgunaratri) ; i+=63){
-				jumlahNgunaratri += 1;
-			}
-			*/
 			if (tgl.noNgunaratri > (mulai + 63)){
 				jumlahNgunaratri = ((tgl.noNgunaratri - (mulai + 63))/63) + 1;
 				if ((tgl.noNgunaratri - (mulai + 63))%63==0){jumlahNgunaratri--;}
@@ -1281,12 +1270,6 @@ public class SakaCalendarCalculator {
 		}else{ // Jika tanggal yang dihitung sebelum tanggal pivot
 		
 			//mengetahui jumlah ngunaratri
-			/***KODE LAMA***
-			for (int i = 0;i<(pivot.noNgunaratri+63);i+=63)
-			{
-				mulai = i; // Mengetahui pengalantaka terakhir
-			}
-			*/
 			if ((pivot.noNgunaratri+63) > 63){
 				if ((pivot.noNgunaratri+63) % 63 == 0){
 					mulai = (pivot.noNgunaratri+63)-63;
@@ -1297,11 +1280,6 @@ public class SakaCalendarCalculator {
 			
 			tgl.noNgunaratri = pivot.noNgunaratri + bedaHari; //Masukkan no ngunaratri
 			
-			/***KODE LAMA***
-			for (int i = (mulai - 63);i > (tgl.noNgunaratri) ; i-=63){
-				jumlahNgunaratri += 1;
-			}
-			*/
 			if (tgl.noNgunaratri < (mulai - 63)){
 				jumlahNgunaratri = ((-(tgl.noNgunaratri - (mulai - 63)))/63) + 1;
 				if ((-(tgl.noNgunaratri - (mulai - 63)))%63==0){jumlahNgunaratri--;}
@@ -1310,14 +1288,6 @@ public class SakaCalendarCalculator {
 			// Menghitung angka penanggal/pangelong, jika 0 maka diubah ke 15
 			hasilNgunaratri = bedaHari + pivot.penanggal - jumlahNgunaratri;
 			
-			/***KODE LAMA***
-			do{
-				hasilNgunaratri+=15;
-			}while(hasilNgunaratri<0);
-			hasilNgunaratri = hasilNgunaratri % 15;
-			if (hasilNgunaratri == 0) { hasilNgunaratri =15; }
-			hasilNgunaratri = 15 - (-hasilNgunaratri%15)
-			*/
 			hasilNgunaratri = 15 - (-hasilNgunaratri%15) ;
 			
 			tgl.penanggal=hasilNgunaratri;
