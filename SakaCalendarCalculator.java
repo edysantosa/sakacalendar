@@ -38,7 +38,10 @@ public class SakaCalendarCalculator {
 	
 	/*** Fungsi menambahkan tanggal-tanggal pivot ***/
 	private void setPivots() {
-	
+		/*
+		* Angka pivot digunakan sebagai titik patokan dalam melakukan perhitungan
+		* semakin dekat pivot dengan tanggal yang dicari, semakin cepat perhitungan dilakukan
+		*/
 		pivots = new ArrayList<SakaCalendar>();
 		
 		SakaCalendar pivotTemp = new SakaCalendar(1991,0,1);//01-01-1991
@@ -1469,12 +1472,6 @@ public class SakaCalendarCalculator {
 				tgl.noSasih = (hasilSasih - jumlahNampih + pivot.noSasih)%12  ;
 				if (tgl.isNampih){tgl.noSasih--;}
 				
-				/***KODE LAMA***
-				while ( tgl.noSasih < 0 ){
-					tgl.noSasih = tgl.noSasih + 12;
-				}
-				if (tgl.noSasih == 0 ){tgl.noSasih = 12;}
-				*/
 				if (tgl.noSasih < 0){
 					tgl.noSasih = 12 - (-tgl.noSasih%12);
 				}
@@ -1520,12 +1517,6 @@ public class SakaCalendarCalculator {
 				
 				tgl.noSasih = pivot.noSasih - hasilSasih + jumlahNampih;
 				
-				/***KODE LAMA***
-				while(tgl.noSasih < 0){
-					tgl.noSasih += 12;
-				}
-				if (tgl.noSasih == 0 ){tgl.noSasih = 12;}
-				*/
 				if (tgl.noSasih < 0){
 					tgl.noSasih = 12 - (-tgl.noSasih%12);
 				}
@@ -1586,12 +1577,6 @@ public class SakaCalendarCalculator {
 				tgl.noSasih = (hasilSasih - jumlahNampih + pivot.noSasih)%12  ;
 				if (tgl.isNampih){tgl.noSasih--;}
 				
-				/***KODE LAMA***
-				while ( tgl.noSasih < 0 ){
-					tgl.noSasih = tgl.noSasih + 12;
-				}
-				if (tgl.noSasih == 0 ){tgl.noSasih = 12;}
-				*/
 				if (tgl.noSasih < 0){
 					tgl.noSasih = 12 - (-tgl.noSasih%12);
 				}
@@ -1649,12 +1634,6 @@ public class SakaCalendarCalculator {
 				
 				tgl.noSasih = pivot.noSasih - hasilSasih + jumlahNampih;
 				
-				/***KODE LAMA***
-				while(tgl.noSasih < 0){
-					tgl.noSasih += 12;
-				}
-				if (tgl.noSasih == 0 ){tgl.noSasih = 12;}
-				*/
 				if (tgl.noSasih < 0){
 					tgl.noSasih = 12 - (-tgl.noSasih%12);
 				}
