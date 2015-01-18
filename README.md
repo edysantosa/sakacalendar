@@ -446,3 +446,14 @@ Class pada package ini dimbil dari skripsi S1 saya pada STIKOM Bali http://digil
 Buku-buku yang dijadikan acuan adalah "Dasar Wariga", dan "Tenung Wariga" karangan I.B. Putra Manik Aryana, serta "Pokok-pokok Wariga" karangan I.B. Supartha Ardana.
 
 Selain itu juga banyak diambil informasi dari http://www.babadbali.com/, http://www.kalenderbali.org/, dan http://www.balabali.com/id/balabali-kalender-id
+
+
+## FAQ
+Q : Mengapa dibuat 2 class? Mengapa tidak dijadikan satu saja
+A : Class ini awalnya dibuat untuk aplikasi android, dimana performanya tidak seperti di desktop. Jadi dibuat sebuah class container dan class untuk melakukan perhitungan kalender dengan fungsinya sendiri-sendiri sehingga hanya dilakukan perhitungan yang memang diperlukan saja demi menghemat resoruce.
+
+Q : Bagaimana caranya ikut berkontribusi?
+A : Fork class ini dan lakukan pull request, atau buat sebuah issue, atau gunakan class ini untuk membuat sebuah aplikasi.
+
+Q : Bolehkah saya menggunakan class ini untuk membuat thesis/skripsi, atau aplikasi komersil?
+A : Silahkan, asal masih dalam batasan lisensi GNU GPL.
