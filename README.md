@@ -449,16 +449,11 @@ Selain itu juga banyak diambil informasi dari http://www.babadbali.com/, http://
 
 
 ## FAQ
-Q : Mengapa dibuat 2 class? Mengapa tidak dijadikan satu saja
-
+Q : Mengapa dibuat 2 class? Mengapa tidak dijadikan satu saja  <br />  
 A : Class ini awalnya dibuat untuk aplikasi android, dimana performanya tidak seperti di desktop. Jadi dibuat sebuah class container dan class untuk melakukan perhitungan kalender dengan fungsinya sendiri-sendiri sehingga hanya dilakukan perhitungan yang memang diperlukan saja demi menghemat resoruce.
 
-
-Q : Bagaimana caranya ikut berkontribusi?
-
+Q : Bagaimana caranya ikut berkontribusi?  <br />  
 A : Fork class ini dan lakukan pull request, atau buat sebuah issue, atau gunakan class ini untuk membuat sebuah aplikasi.
 
-
-Q : Bolehkah saya menggunakan class ini untuk membuat thesis/skripsi, atau aplikasi komersil?
-
+Q : Bolehkah saya menggunakan class ini untuk membuat thesis/skripsi, atau aplikasi komersil?  <br />  
 A : Silahkan, asal masih dalam batasan lisensi GNU GPL.
