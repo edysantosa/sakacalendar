@@ -48,37 +48,37 @@ public class SakaCalendarCalculator {
 		pivotTemp.noWuku = 21; pivotTemp.angkaWuku = 143;
 		pivotTemp.tahunSaka = 1912; pivotTemp.noSasih = 7; pivotTemp.penanggal = 15; pivotTemp.isPangelong = false; pivotTemp.noNgunaratri = 916; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(1992,0,1);//01-01-1992
 		pivotTemp.noWuku = 13; pivotTemp.angkaWuku = 88;
 		pivotTemp.tahunSaka = 1913; pivotTemp.noSasih = 7; pivotTemp.penanggal = 11; pivotTemp.isPangelong = true; pivotTemp.noNgunaratri = 1281; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(1999,0,1);//01-01-1999
 		pivotTemp.noWuku = 18; pivotTemp.angkaWuku = 125;
 		pivotTemp.tahunSaka = 1920; pivotTemp.noSasih = 8; pivotTemp.penanggal = 13; pivotTemp.isPangelong = false; pivotTemp.noNgunaratri = 58; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(2000,0,1);//01-01-2000
 		pivotTemp.noWuku = 10; pivotTemp.angkaWuku = 70;
 		pivotTemp.tahunSaka = 1921; pivotTemp.noSasih = 7; pivotTemp.penanggal = 10; pivotTemp.isPangelong = true; pivotTemp.noNgunaratri = 424; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(2002,0,1);//01-01-2002
 		pivotTemp.noWuku = 25 ;pivotTemp.angkaWuku = 171;
 		pivotTemp.tahunSaka = 1923; pivotTemp.noSasih = 7; pivotTemp.penanggal = 3; pivotTemp.isPangelong = true; pivotTemp.noNgunaratri = 1155; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(2003,0,1);//01-01-2003
 		pivotTemp.noWuku = 17 ;pivotTemp.angkaWuku = 116;
 		pivotTemp.tahunSaka = 1924; pivotTemp.noSasih = 7; pivotTemp.penanggal = 14; pivotTemp.isPangelong = true; pivotTemp.noNgunaratri = 1520; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(2012,5,17);//17-05-2012
 		pivotTemp.noWuku = 1;pivotTemp.angkaWuku = 1;
 		pivotTemp.tahunSaka = 1934; pivotTemp.noSasih = 12; pivotTemp.penanggal = 13; pivotTemp.isPangelong = true; pivotTemp.noNgunaratri = 1195; pivotTemp.isNgunaratri = false;
 		pivots.add(pivotTemp);
-		
+
 		pivotTemp = new SakaCalendar(2101,0,1);//01-01-2101
 		pivotTemp.noWuku = 30;pivotTemp.angkaWuku = 210;
 		pivotTemp.tahunSaka = 2022; pivotTemp.noSasih = 7; pivotTemp.penanggal = 1; pivotTemp.isPangelong = false; pivotTemp.noNgunaratri = 1404; pivotTemp.isNgunaratri = false;
@@ -126,7 +126,7 @@ public class SakaCalendarCalculator {
 				d1.add(java.util.Calendar.YEAR, 1);
 			} while (d1.get(java.util.Calendar.YEAR) != y2);
 		}
-		
+
 		if (mundur){
 			return -days;
 		}else{
