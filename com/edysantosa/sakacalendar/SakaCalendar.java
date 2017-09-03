@@ -1336,7 +1336,7 @@ public class SakaCalendar extends GregorianCalendar {
 			if (hasilNgunaratri == 0) { hasilNgunaratri =15; }
 			this.penanggal=hasilNgunaratri;
 			// Menghitung apakah penanggal atau pangelong
-			this.isPangelong = ((((bedaHari + pivot.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) ? pivot.isPangelong : !pivot.isPangelong ;
+			this.isPangelong = ((((bedaHari + pivot.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) == pivot.isPangelong;
 
 		}else{ // Jika tanggal yang dihitung sebelum tanggal pivot
 
@@ -1363,7 +1363,7 @@ public class SakaCalendar extends GregorianCalendar {
 
 			this.penanggal=hasilNgunaratri;
 			// Menghitung apakah penanggal atau pangelong
-			this.isPangelong = ((((-bedaHari + this.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) ? pivot.isPangelong : !pivot.isPangelong ;
+			this.isPangelong = ((((-bedaHari + this.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) == pivot.isPangelong;
 		}
 
 		/* MENENTUKAN APAKAH NGUNARATRI ATAU TIDAK ***/
@@ -1402,7 +1402,7 @@ public class SakaCalendar extends GregorianCalendar {
 
 						this.isNgunaratri = true;
 						this.penanggal = this.penanggal -1; //Jika ngunaratri mundur satu hari
-						if (this.penanggal == 0 && this.isPangelong == false) {this.isPangelong = true;} // Ubah pangelong menjadi true apabila mundur dari penanggal 1
+						if (this.penanggal == 0 && !this.isPangelong) {this.isPangelong = true;} // Ubah pangelong menjadi true apabila mundur dari penanggal 1
 						if (this.penanggal == 0) {this.penanggal = 15;} //Ubah penanggal jadi 15 jika pengurangan akibat ngunaratri menjadi 0
 					}
 				}
@@ -1440,7 +1440,7 @@ public class SakaCalendar extends GregorianCalendar {
 
 						this.isNgunaratri = true;
 						this.penanggal = this.penanggal -1; //Jika ngunaratri mundur satu hari
-						if (this.penanggal == 0 && this.isPangelong == false) {this.isPangelong = true;} // Ubah pangelong menjadi true apabila mundur dari penanggal 1
+						if (this.penanggal == 0 && !this.isPangelong) {this.isPangelong = true;} // Ubah pangelong menjadi true apabila mundur dari penanggal 1
 						if (this.penanggal == 0) {this.penanggal = 15;} //Ubah penanggal jadi 15 jika pengurangan akibat ngunaratri menjadi 0
 					}
 				}
@@ -1501,10 +1501,10 @@ public class SakaCalendar extends GregorianCalendar {
 						isNampih = false;
 					}else{
 						if (((tahunSaka % 19) == 0)||((tahunSaka % 19) == 6)||((tahunSaka % 19) == 11)){
-							this.isNampih = (perulangan2==12) ? true : false;
+							this.isNampih = perulangan2 == 12;
 							if (perulangan2==1){perulangan2--;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 3)||((tahunSaka % 19) == 8)||((tahunSaka % 19) == 14)||((tahunSaka % 19) == 16)) {
-							this.isNampih = (perulangan2==1) ? true : false;
+							this.isNampih = perulangan2 == 1;
 							if (perulangan2==2){perulangan2--;jumlahNampih++;isNampih=true;}
 						}
 					}
@@ -1547,10 +1547,10 @@ public class SakaCalendar extends GregorianCalendar {
 						isNampih = false;
 					}else{
 						if (((tahunSaka % 19) == 0)||((tahunSaka % 19) == 6)||((tahunSaka % 19) == 11)){
-							this.isNampih = (perulangan2==11) ? true : false;
+							this.isNampih = perulangan2 == 11;
 							if (perulangan2==10){perulangan2++;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 3)||((tahunSaka % 19) == 8)||((tahunSaka % 19) == 14)||((tahunSaka % 19) == 16)) {
-							this.isNampih = (perulangan2==12) ? true : false;
+							this.isNampih = perulangan2 == 12;
 							if (perulangan2==11){perulangan2++;jumlahNampih++;isNampih=true;}
 						}
 					}
@@ -1594,22 +1594,22 @@ public class SakaCalendar extends GregorianCalendar {
 						isNampih = false;
 					}else{
 						if (((tahunSaka % 19) == 2)||((tahunSaka % 19) == 10)){
-							this.isNampih = (perulangan2==12) ? true : false;
+							this.isNampih = perulangan2 == 12;
 							if (perulangan2==1){perulangan2--;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 4)) {
-							this.isNampih = (perulangan2==4) ? true : false;
+							this.isNampih = perulangan2 == 4;
 							if (perulangan2==5){perulangan2--;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 7)) {
-							this.isNampih = (perulangan2==2) ? true : false;
+							this.isNampih = perulangan2 == 2;
 							if (perulangan2==3){perulangan2--;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 13)) {
-							this.isNampih = (perulangan2==11) ? true : false;
+							this.isNampih = perulangan2 == 11;
 							if (perulangan2==12){perulangan2--;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 15)) {
-							this.isNampih = (perulangan2==3) ? true : false;
+							this.isNampih = perulangan2 == 3;
 							if (perulangan2==4){perulangan2--;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 18)) {
-							this.isNampih = (perulangan2==1) ? true : false;
+							this.isNampih = perulangan2 == 1;
 							if (perulangan2==2){perulangan2--;jumlahNampih++;isNampih=true;}
 						}
 					}
@@ -1652,22 +1652,22 @@ public class SakaCalendar extends GregorianCalendar {
 						isNampih = false;
 					}else{
 						if (((tahunSaka % 19) == 2)||((tahunSaka % 19) == 10)){
-							this.isNampih = (perulangan2==11) ? true : false;
+							this.isNampih = perulangan2 == 11;
 							if (perulangan2==10){perulangan2++;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 4)) {
-							this.isNampih = (perulangan2==3) ? true : false;
+							this.isNampih = perulangan2 == 3;
 							if (perulangan2==2){perulangan2++;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 7)) {
-							this.isNampih = (perulangan2==1) ? true : false;
+							this.isNampih = perulangan2 == 1;
 							if (perulangan2==12){perulangan2++;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 13)) {
-							this.isNampih = (perulangan2==10) ? true : false;
+							this.isNampih = perulangan2 == 10;
 							if (perulangan2==9){perulangan2++;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 15)) {
-							this.isNampih = (perulangan2==2) ? true : false;
+							this.isNampih = perulangan2 == 2;
 							if (perulangan2==1){perulangan2++;jumlahNampih++;isNampih=true;}
 						}else if (((tahunSaka % 19) == 18)) {
-							this.isNampih = (perulangan2==12) ? true : false;
+							this.isNampih = perulangan2 == 12;
 							if (perulangan2==11){perulangan2++;jumlahNampih++;isNampih=true;}
 						}
 					}
