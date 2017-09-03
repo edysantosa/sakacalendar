@@ -34,6 +34,15 @@ public class SakaCalendar extends GregorianCalendar {
 
 	SakaCalendarPivot pivot;
 
+	private int noNgunaratri;
+	private int penanggal;
+	private boolean isPangelong;
+	private boolean isNgunaratri;
+	private boolean isNampih;
+	private int tahunSaka;
+	private int noSasih;
+	// TODO : Tambah disini
+
 	public SakaCalendar(){
 		super();
 		this.initialize();
@@ -315,10 +324,9 @@ public class SakaCalendar extends GregorianCalendar {
 		* 4 + 1 = 5 Kliwon
 		*/
 	
-		int noPancawara = 0;
+		int noPancawara = (this.getWuku(ANGKA_WUKU) % 5) + 1 ;
 		int uripPancawara = 5;
-	
-		noPancawara = (this.getWuku(ANGKA_WUKU) % 5) + 1 ;
+
 
 		// mendapatkan urip pancawara
 		switch (noPancawara) {
@@ -398,7 +406,7 @@ public class SakaCalendar extends GregorianCalendar {
 		*/
 	
 		int angkaWuku  = this.getWuku(ANGKA_WUKU);
-		int noCaturwara = 0;
+		int noCaturwara;
 
 		if (angkaWuku == 71 || angkaWuku == 72 || angkaWuku == 73){	
 			noCaturwara = 3;
@@ -442,7 +450,7 @@ public class SakaCalendar extends GregorianCalendar {
 		* 0 -> 8 Uma
 		*/
 	
-		int noAstawara = 0;
+		int noAstawara;
 		int angkaWuku  = this.getWuku(ANGKA_WUKU);
 		
 		if (angkaWuku == 71 || angkaWuku == 72 || angkaWuku == 73){	
@@ -472,7 +480,7 @@ public class SakaCalendar extends GregorianCalendar {
 		* 0 -> 9 Dadi
 		*/
 
-		int noSangawara = 0;
+		int noSangawara;
 		int angkaWuku  = this.getWuku(ANGKA_WUKU);	
 
 		if (angkaWuku <= 4){
@@ -552,9 +560,9 @@ public class SakaCalendar extends GregorianCalendar {
     
     /*** Fungsi menghitung pewatekan alit ***/
     public int getWatekAlit(){
-        
+
         /*
-        * Pada SakaCalendar : 
+        * Pada SakaCalendar :
         * 1 Uler
         * 2 Gajah
         * 3 Lembu
@@ -563,15 +571,15 @@ public class SakaCalendar extends GregorianCalendar {
         int noWatekAlit;
         noWatekAlit = (this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 4;
         if (noWatekAlit == 0){noWatekAlit = 4;}
-        
+
         return noWatekAlit;
     }
-    
+
     /*** Fungsi menghitung pewatekan madya ***/
     public int getWatekMadya(){
-        
+
         /*
-        * Pada SakaCalendar : 
+        * Pada SakaCalendar :
         * 1 Gajah
         * 2 Watu
         * 3 Buta
@@ -581,15 +589,15 @@ public class SakaCalendar extends GregorianCalendar {
         int noWatekMadya;
         noWatekMadya = (this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 5;
         if (noWatekMadya == 0){noWatekMadya = 5;}
-        
+
         return noWatekMadya;
     }
-    
+
     /*** Fungsi menghitung eka jala rsi ***/
     public int getEkaJalaRsi(){
-    
+
         /*
-        * Pada SakaCalendar : 
+        * Pada SakaCalendar :
         * 1 Bagna mapasah
         * 2 Bahu putra
         * 3 Buat astawa
@@ -619,7 +627,7 @@ public class SakaCalendar extends GregorianCalendar {
         * 27 Wredhi putra
         * 28 Wredhi sarwa mule
         */
-        
+
         int noEkaJalaRsi=0;
         int noWuku = this.getWuku(NO_WUKU);
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
@@ -635,19 +643,19 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 18;break;
             }
             break;
-            
+
         case 2:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 10;break;
             case 1 : noEkaJalaRsi = 8;break;
             case 2 : noEkaJalaRsi = 14;break;
             case 3 : noEkaJalaRsi = 27;break;
-            case 4 : noEkaJalaRsi = 25;break; 
+            case 4 : noEkaJalaRsi = 25;break;
             case 5 : noEkaJalaRsi = 24;break;
             case 6 : noEkaJalaRsi = 21;break;
             }
             break;
-            
+
         case 3:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 14;break;
@@ -659,7 +667,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 3;break;
             }
             break;
-            
+
         case 4:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 15;break;
@@ -671,7 +679,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 1;break;
             }
             break;
-            
+
         case 5:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 11;break;
@@ -683,8 +691,8 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 24;break;
             }
             break;
-            
-            
+
+
         case 6:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 18;break;
@@ -696,8 +704,8 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 3;break;
             }
             break;
-            
-            
+
+
         case 7:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 13;break;
@@ -709,8 +717,8 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 27;break;
             }
             break;
-            
-            
+
+
         case 8:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 2;break;
@@ -722,7 +730,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 6;break;
             }
             break;
-            
+
         case 9:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 10;break;
@@ -734,7 +742,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 22;break;
             }
             break;
-        
+
         case 10:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 26;break;
@@ -746,7 +754,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 1;break;
             }
             break;
-            
+
         case 11:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 16;break;
@@ -758,7 +766,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 19;break;
             }
             break;
-            
+
         case 12:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 25;break;
@@ -770,7 +778,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 27;break;
             }
             break;
-            
+
         case 13:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 8;break;
@@ -782,8 +790,8 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 13;break;
             }
             break;
-            
-        
+
+
         case 14:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 26;break;
@@ -795,7 +803,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 13;break;
             }
             break;
-            
+
         case 15:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 21;break;
@@ -807,7 +815,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 14;break;
             }
             break;
-            
+
         case 16:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 26;break;
@@ -819,7 +827,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 21;break;
             }
             break;
-            
+
         case 17:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 26;break;
@@ -831,7 +839,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 18;break;
             }
             break;
-            
+
         case 18:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 8;break;
@@ -843,7 +851,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 6;break;
             }
             break;
-        
+
         case 19:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 10;break;
@@ -855,7 +863,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 19;break;
             }
             break;
-            
+
         case 20:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 6;break;
@@ -867,7 +875,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 18;break;
             }
             break;
-            
+
         case 21:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 21;break;
@@ -879,7 +887,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 26;break;
             }
             break;
-            
+
         case 22:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 18;break;
@@ -891,7 +899,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 19;break;
             }
             break;
-        
+
         case 23:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 26;break;
@@ -903,7 +911,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 8;break;
             }
             break;
-            
+
         case 24:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 16;break;
@@ -915,7 +923,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 3;break;
             }
             break;
-            
+
         case 25:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 13;break;
@@ -927,7 +935,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 21;break;
             }
             break;
-            
+
         case 26:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 8;break;
@@ -939,7 +947,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 21;break;
             }
             break;
-            
+
         case 27:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 5;break;
@@ -951,7 +959,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 24;break;
             }
             break;
-            
+
         case 28:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 19;break;
@@ -963,7 +971,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 25;break;
             }
             break;
-            
+
         case 29:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 4;break;
@@ -975,7 +983,7 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 21;break;
             }
             break;
-            
+
         case 30:
             switch(noSaptawara){
             case 0 : noEkaJalaRsi = 15;break;
@@ -988,15 +996,15 @@ public class SakaCalendar extends GregorianCalendar {
             }
             break;
         }
-        
+
         return noEkaJalaRsi;
     }
-    
+
     /*** Fungsi menghitung palalintangan ***/
     public int getLintang(){
-        
+
         /*
-        * Pada SakaCalendar : 
+        * Pada SakaCalendar :
         * 1 Gajah
         * 2 Kiriman
         * 3 Jong Sarat
@@ -1033,7 +1041,7 @@ public class SakaCalendar extends GregorianCalendar {
         * 34 Udang
         * 35 Begoong
         */
-        
+
         int noLintang=0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
         int noPancawara = this.getPancawara(NO_PANCAWARA);
@@ -1103,14 +1111,14 @@ public class SakaCalendar extends GregorianCalendar {
             break;
         }
         return noLintang;
-    
+
     }
-    
+
     /*** Fungsi menghitung panca sudha ***/
     public int getPancasudha(){
-    
+
         /*
-        * Pada SakaCalendar : 
+        * Pada SakaCalendar :
         * 1 Wisesa segara
         * 2 Tunggak semi
         * 3 Satria wibhawa
@@ -1119,13 +1127,13 @@ public class SakaCalendar extends GregorianCalendar {
         * 6 Satria wirang
         * 7 Lebu katiup angin
         */
-        
+
         int noPancasudha = 0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
-        int noPancawara = this.getPancawara(NO_PANCAWARA);        
+        int noPancawara = this.getPancawara(NO_PANCAWARA);
         if (noSaptawara==0 && noPancawara==2 || noSaptawara==3 && noPancawara==2 || noSaptawara==1 && noPancawara==4 || noSaptawara==5 && noPancawara==5 || noSaptawara==2 && noPancawara==1 ||noSaptawara==6 && noPancawara==3){
             noPancasudha = 1;
-        } else if (noSaptawara==1 && noPancawara==1 || noSaptawara==4 && noPancawara==4 || noSaptawara==5 && noPancawara==2 || noSaptawara==6 && noPancawara==5){ 
+        } else if (noSaptawara==1 && noPancawara==1 || noSaptawara==4 && noPancawara==4 || noSaptawara==5 && noPancawara==2 || noSaptawara==6 && noPancawara==5){
             noPancasudha = 2;
         } else if (noSaptawara==0 && noPancawara==4 || noSaptawara==2 && noPancawara==3 || noSaptawara==3 && noPancawara==4 || noSaptawara==4 && noPancawara==1 || noSaptawara==6 && noPancawara==2){
             noPancasudha = 3;
@@ -1140,12 +1148,12 @@ public class SakaCalendar extends GregorianCalendar {
         }
         return noPancasudha;
     }
-    
+
     /*** Fungsi menghitung pararasan ***/
     public int getPararasan(){
-    
+
         /*
-        * Pada SakaCalendar : 
+        * Pada SakaCalendar :
         * 1 Laku bumi
         * 2 Laku api
         * 3 Laku angin
@@ -1159,10 +1167,10 @@ public class SakaCalendar extends GregorianCalendar {
         * 11 Laku pretiwi
         * 12 Laku agni agung
         */
-        
+
         int noPararasan = 0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
-        int noPancawara = this.getPancawara(NO_PANCAWARA);        
+        int noPancawara = this.getPancawara(NO_PANCAWARA);
         if (noSaptawara==2 && noPancawara==4){
             noPararasan = 1;
         } else if (noSaptawara==1 && noPancawara==4 || noSaptawara==2 && noPancawara==1){
@@ -1190,13 +1198,13 @@ public class SakaCalendar extends GregorianCalendar {
         }
         return noPararasan;
     }
-    
+
     /*** Fungsi menghitung rakam ***/
     public int getRakam(){
-        
+
         /*
         * Menggunakan rumus dari babadbali.com : "Dari hari Sukra diberi angka urut 1 sampai Wrespati - kemudian dari Kliwon juga diberi angka urut sampai Wage. Angka urutan itu dibagi dengan 6, sisanya mencerminkan sifat pimpinan yang akan dinobatkan nanti."
-        * Pada SakaCalendar menjadi : 
+        * Pada SakaCalendar menjadi :
         * 1 Kala tinatang
         * 2 Demang kandhuruwan
         * 3 Sanggar waringin
@@ -1204,12 +1212,12 @@ public class SakaCalendar extends GregorianCalendar {
         * 5 Macam katawan
         * 0 -> 6 Nuju pati
         */
-        
-        int noRakam = 0;
+
+        int noRakam;
         int saptawara = 0, pancawara = 0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
         int noPancawara = this.getPancawara(NO_PANCAWARA);
-                
+
         switch (noSaptawara){
         case 0:saptawara = 3;break;
         case 1:saptawara = 4;break;
@@ -1219,7 +1227,7 @@ public class SakaCalendar extends GregorianCalendar {
         case 5:saptawara = 1;break;
         case 6:saptawara = 2;break;
         }
-        
+
         switch (noPancawara){
         case 1:pancawara = 2;break;
         case 2:pancawara = 3;break;
@@ -1227,11 +1235,457 @@ public class SakaCalendar extends GregorianCalendar {
         case 4:pancawara = 5;break;
         case 5:pancawara = 1;break;
         }
-        
+
         noRakam = (pancawara + saptawara) % 6;
         if (noRakam == 0){noRakam = 6;}
-        
+
         return noRakam;
-    }	
+    }
+
+
+	/*** Fungsi menghitung zodiak ***/
+	public int getZodiak(){
+
+		/*
+		* Pada SakaCalendar :
+		* 1 Aries
+		* 2 Taurus
+		* 3 Gemini
+		* 4 Cancer
+		* 5 Leo
+		* 6 Virgo
+		* 7 Libra
+		* 8 Scorpio
+		* 9 Sagitarius
+		* 10 Capricon
+		* 11 Aquarius
+		* 12 Pisces
+		*/
+
+
+		int noZodiak = 0;
+		int M = this.get(Calendar.MONTH)+1;
+		int D = this.get(Calendar.DATE);
+
+		if ((M == 12 && D >= 22 && D <= 31) || (M ==  1 && D >= 1 && D <= 19))
+			noZodiak = 10;
+		else if ((M ==  1 && D >= 20 && D <= 31) || (M ==  2 && D >= 1 && D <= 17))
+			noZodiak = 11;
+		else if ((M ==  2 && D >= 18 && D <= 29) || (M ==  3 && D >= 1 && D <= 19))
+			noZodiak = 12;
+		else if ((M ==  3 && D >= 20 && D <= 31) || (M ==  4 && D >= 1 && D <= 19))
+			noZodiak = 1;
+		else if ((M ==  4 && D >= 20 && D <= 30) || (M ==  5 && D >= 1 && D <= 20))
+			noZodiak = 2;
+		else if ((M ==  5 && D >= 21 && D <= 31) || (M ==  6 && D >= 1 && D <= 20))
+			noZodiak = 3;
+		else if ((M ==  6 && D >= 21 && D <= 30) || (M ==  7 && D >= 1 && D <= 22))
+			noZodiak = 4;
+		else if ((M ==  7 && D >= 23 && D <= 31) || (M ==  8 && D >= 1 && D <= 22))
+			noZodiak = 5;
+		else if ((M ==  8 && D >= 23 && D <= 31) || (M ==  9 && D >= 1 && D <= 22))
+			noZodiak = 6;
+		else if ((M ==  9 && D >= 23 && D <= 30) || (M == 10 && D >= 1 && D <= 22))
+			noZodiak = 7;
+		else if ((M == 10 && D >= 23 && D <= 31) || (M == 11 && D >= 1 && D <= 21))
+			noZodiak = 8;
+		else if ((M == 11 && D >= 22 && D <= 30) || (M == 12 && D >= 1 && D <= 21))
+			noZodiak = 9;
+
+		return noZodiak;
+	}
+
+
+	/*** Fungsi menghitung kalender saka ***/
+	private void hitungSaka(){
+
+		int bedaHari = (int)getDateDiff(pivot.getTimeInMillis(),this.getTimeInMillis());
+
+		/* MENGHITUNG PENANGGAL PANGELONG ***/
+		int hasilNgunaratri;
+		int jumlahNgunaratri = 0;
+		int mulai=0;
+
+		int noWuku =  this.getWuku(NO_WUKU);
+		int noPancawara = this.getPancawara(NO_PANCAWARA);
+		int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
+
+		if (bedaHari >= 0){
+
+			//mengetahui jumlah ngunaratri
+
+			if (pivot.noNgunaratri > 63){
+				if (pivot.noNgunaratri % 63 == 0){
+					mulai = pivot.noNgunaratri-63;
+				} else {
+					mulai = pivot.noNgunaratri - (pivot.noNgunaratri % 63);
+				}
+			}
+
+			this.noNgunaratri = pivot.noNgunaratri + bedaHari; //Masukkan no ngunaratri
+
+			if (this.noNgunaratri > (mulai + 63)){
+				jumlahNgunaratri = ((this.noNgunaratri - (mulai + 63))/63) + 1;
+				if ((this.noNgunaratri - (mulai + 63))%63==0){jumlahNgunaratri--;}
+			}
+
+
+			if (pivot.isNgunaratri){jumlahNgunaratri++;} //Jika pivot adalah ngunaratri, tambah jumlah ngunaratri
+			// Menghitung angka penanggal/pangelong, jika 0 maka diubah ke 15
+			hasilNgunaratri = (bedaHari + pivot.penanggal + jumlahNgunaratri) % 15;
+			if (hasilNgunaratri == 0) { hasilNgunaratri =15; }
+			this.penanggal=hasilNgunaratri;
+			// Menghitung apakah penanggal atau pangelong
+			this.isPangelong = ((((bedaHari + pivot.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) ? pivot.isPangelong : !pivot.isPangelong ;
+
+		}else{ // Jika tanggal yang dihitung sebelum tanggal pivot
+
+			//mengetahui jumlah ngunaratri
+			if ((pivot.noNgunaratri+63) > 63){
+				if ((pivot.noNgunaratri+63) % 63 == 0){
+					mulai = (pivot.noNgunaratri+63)-63;
+				} else {
+					mulai = (pivot.noNgunaratri+63) - ((pivot.noNgunaratri+63) % 63);
+				}
+			}
+
+			this.noNgunaratri = pivot.noNgunaratri + bedaHari; //Masukkan no ngunaratri
+
+			if (this.noNgunaratri < (mulai - 63)){
+				jumlahNgunaratri = ((-(this.noNgunaratri - (mulai - 63)))/63) + 1;
+				if ((-(this.noNgunaratri - (mulai - 63)))%63==0){jumlahNgunaratri--;}
+			}
+
+			// Menghitung angka penanggal/pangelong, jika 0 maka diubah ke 15
+			hasilNgunaratri = bedaHari + pivot.penanggal - jumlahNgunaratri;
+
+			hasilNgunaratri = 15 - (-hasilNgunaratri%15) ;
+
+			this.penanggal=hasilNgunaratri;
+			// Menghitung apakah penanggal atau pangelong
+			this.isPangelong = ((((-bedaHari + this.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) ? pivot.isPangelong : !pivot.isPangelong ;
+		}
+
+		/* MENENTUKAN APAKAH NGUNARATRI ATAU TIDAK ***/
+		this.isNgunaratri = false;
+		if (this.get(Calendar.YEAR) > 1999 ){
+			// Pengalantaka Eka Sungsang ke Pahing
+			if (noSaptawara == 2){
+
+				if (bedaHari > 0){
+
+					if ((noWuku==10 && noPancawara==2 && (this.penanggal==14||this.penanggal==9||this.penanggal==4)) ||
+							(noWuku==19 && noPancawara==5 && (this.penanggal==3||this.penanggal==13||this.penanggal==8)) ||
+							(noWuku==28 && noPancawara==3 && (this.penanggal==7||this.penanggal==2||this.penanggal==12)) ||
+							(noWuku==7 && noPancawara==1  && (this.penanggal==11||this.penanggal==6||this.penanggal==1)) ||
+							(noWuku==16 && noPancawara==4 && (this.penanggal==15||this.penanggal==10||this.penanggal==5)) ||
+							(noWuku==25 && noPancawara==2 && (this.penanggal==4||this.penanggal==14||this.penanggal==9))  ||
+							(noWuku==4 && noPancawara==5  && (this.penanggal==8||this.penanggal==3||this.penanggal==13)) ||
+							(noWuku==13 && noPancawara==3 && (this.penanggal==12||this.penanggal==7||this.penanggal==2)) ||
+							(noWuku==22 && noPancawara==1 && (this.penanggal==1||this.penanggal==11||this.penanggal==6)) ||
+							(noWuku==1 && noPancawara==4  && (this.penanggal==5||this.penanggal==15||this.penanggal==10))){
+
+						this.isNgunaratri = true;
+
+					}
+				}else{
+					if ((noWuku==10 && noPancawara==2 && (this.penanggal==15||this.penanggal==10||this.penanggal==5)) ||
+							(noWuku==19 && noPancawara==5 && (this.penanggal==4||this.penanggal==14||this.penanggal==9)) ||
+							(noWuku==28 && noPancawara==3 && (this.penanggal==8||this.penanggal==3||this.penanggal==13)) ||
+							(noWuku==7 && noPancawara==1  && (this.penanggal==12||this.penanggal==7||this.penanggal==2)) ||
+							(noWuku==16 && noPancawara==4 && (this.penanggal==1||this.penanggal==11||this.penanggal==6)) ||
+							(noWuku==25 && noPancawara==2 && (this.penanggal==5||this.penanggal==15||this.penanggal==10))  ||
+							(noWuku==4 && noPancawara==5  && (this.penanggal==9||this.penanggal==4||this.penanggal==14)) ||
+							(noWuku==13 && noPancawara==3 && (this.penanggal==13||this.penanggal==8||this.penanggal==3)) ||
+							(noWuku==22 && noPancawara==1 && (this.penanggal==2||this.penanggal==12||this.penanggal==7)) ||
+							(noWuku==1 && noPancawara==4  && (this.penanggal==6||this.penanggal==1||this.penanggal==11))){
+
+						this.isNgunaratri = true;
+						this.penanggal = this.penanggal -1; //Jika ngunaratri mundur satu hari
+						if (this.penanggal == 0 && this.isPangelong == false) {this.isPangelong = true;} // Ubah pangelong menjadi true apabila mundur dari penanggal 1
+						if (this.penanggal == 0) {this.penanggal = 15;} //Ubah penanggal jadi 15 jika pengurangan akibat ngunaratri menjadi 0
+					}
+				}
+			}
+		}else{
+			// Pengalantaka Eka Sungsang ke Pon
+			if (noSaptawara == 3){
+				if (bedaHari > 0){
+
+					if ((noWuku==10 && noPancawara==3 && (this.penanggal==14||this.penanggal==9||this.penanggal==4)) ||
+							(noWuku==19 && noPancawara==1 && (this.penanggal==3||this.penanggal==13||this.penanggal==8)) ||
+							(noWuku==28 && noPancawara==4 && (this.penanggal==7||this.penanggal==2||this.penanggal==12)) ||
+							(noWuku==7 && noPancawara==2  && (this.penanggal==11||this.penanggal==6||this.penanggal==1)) ||
+							(noWuku==16 && noPancawara==5 && (this.penanggal==15||this.penanggal==10||this.penanggal==5)) ||
+							(noWuku==25 && noPancawara==3 && (this.penanggal==4||this.penanggal==14||this.penanggal==9))  ||
+							(noWuku==4 && noPancawara==1  && (this.penanggal==8||this.penanggal==3||this.penanggal==13)) ||
+							(noWuku==13 && noPancawara==4 && (this.penanggal==12||this.penanggal==7||this.penanggal==2)) ||
+							(noWuku==22 && noPancawara==2 && (this.penanggal==1||this.penanggal==11||this.penanggal==6)) ||
+							(noWuku==1 && noPancawara==5  && (this.penanggal==5||this.penanggal==15||this.penanggal==10))){
+
+						this.isNgunaratri = true;
+
+					}
+				}else{
+					if ((noWuku==10 && noPancawara==3 && (this.penanggal==15||this.penanggal==10||this.penanggal==5)) ||
+							(noWuku==19 && noPancawara==1 && (this.penanggal==4||this.penanggal==14||this.penanggal==9)) ||
+							(noWuku==28 && noPancawara==4 && (this.penanggal==8||this.penanggal==3||this.penanggal==13)) ||
+							(noWuku==7 && noPancawara==2  && (this.penanggal==12||this.penanggal==7||this.penanggal==2)) ||
+							(noWuku==16 && noPancawara==5 && (this.penanggal==1||this.penanggal==11||this.penanggal==6)) ||
+							(noWuku==25 && noPancawara==3 && (this.penanggal==5||this.penanggal==15||this.penanggal==10))  ||
+							(noWuku==4 && noPancawara==1  && (this.penanggal==9||this.penanggal==4||this.penanggal==14)) ||
+							(noWuku==13 && noPancawara==4 && (this.penanggal==13||this.penanggal==8||this.penanggal==3)) ||
+							(noWuku==22 && noPancawara==2 && (this.penanggal==2||this.penanggal==12||this.penanggal==7)) ||
+							(noWuku==1 && noPancawara==5  && (this.penanggal==6||this.penanggal==1||this.penanggal==11))){
+
+						this.isNgunaratri = true;
+						this.penanggal = this.penanggal -1; //Jika ngunaratri mundur satu hari
+						if (this.penanggal == 0 && this.isPangelong == false) {this.isPangelong = true;} // Ubah pangelong menjadi true apabila mundur dari penanggal 1
+						if (this.penanggal == 0) {this.penanggal = 15;} //Ubah penanggal jadi 15 jika pengurangan akibat ngunaratri menjadi 0
+					}
+				}
+			}
+		}
+
+
+		/* MENGHITUNG SASIH ***/
+		/*
+		* Pada SakaCalendar :
+		* 1 Kasa
+		* 2 Karo
+		* 3 Katiga
+		* 4 Kapat
+		* 5 Kalima
+		* 6 Kanem
+		* 7 Kapitu
+		* 8 Kawolu
+		* 9 Kasanga
+		* 10 Kadasa
+		* 11 Destha
+		* 12 Sadha
+		*/
+
+		int hasilSasih;
+		int jumlahNampih = 0;
+
+		int tahunSaka = pivot.tahunSaka;
+		int perulangan1 = 0;
+		int perulangan2 = pivot.noSasih;
+		boolean isNampih=false;
+
+		if (this.get(Calendar.YEAR) > 2002 || this.get(Calendar.YEAR) < 1992 ){
+			// Sistem nampih sasih
+			if (bedaHari >= 0){
+
+				if (pivot.isPangelong){
+					bedaHari = bedaHari + 15 + (pivot.penanggal - 1);
+					hasilSasih = (bedaHari + jumlahNgunaratri ) / 30 ;
+				}else{
+					bedaHari = bedaHari + (pivot.penanggal - 1);
+					hasilSasih = (bedaHari + jumlahNgunaratri ) / 30 ;
+				}
+
+				// menghitung tahun saka dan jumlah nampih sasih
+				while (perulangan1 < hasilSasih){
+					perulangan1++;
+					perulangan2++;
+					perulangan2 = perulangan2 % 12;
+					if (perulangan2 == 0) { perulangan2 = 12;}
+
+
+					if (perulangan2 == 10){
+						tahunSaka++;
+					}
+
+					if (isNampih) {
+						isNampih = false;
+					}else{
+						if (((tahunSaka % 19) == 0)||((tahunSaka % 19) == 6)||((tahunSaka % 19) == 11)){
+							this.isNampih = (perulangan2==12) ? true : false;
+							if (perulangan2==1){perulangan2--;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 3)||((tahunSaka % 19) == 8)||((tahunSaka % 19) == 14)||((tahunSaka % 19) == 16)) {
+							this.isNampih = (perulangan2==1) ? true : false;
+							if (perulangan2==2){perulangan2--;jumlahNampih++;isNampih=true;}
+						}
+					}
+				}
+
+				this.noSasih = (hasilSasih - jumlahNampih + pivot.noSasih)%12  ;
+				if (this.isNampih){this.noSasih--;}
+
+				if (this.noSasih < 0){
+					this.noSasih = 12 - (-this.noSasih%12);
+				}
+				if (this.noSasih == 0 ){this.noSasih = 12;}
+
+				this.tahunSaka = tahunSaka;
+
+			}else{ //Mundur
+
+				if (pivot.isPangelong){
+					bedaHari = bedaHari - (15 - pivot.penanggal);
+					hasilSasih = -(bedaHari - jumlahNgunaratri ) / 30 ;
+				}else{
+					bedaHari = bedaHari - 15 - (15 - pivot.penanggal);
+					hasilSasih = -(bedaHari - jumlahNgunaratri ) / 30 ;
+				}
+
+
+
+				while (perulangan1 < hasilSasih){
+					perulangan1++;
+					perulangan2--;
+					perulangan2 = perulangan2 % 12;
+					if (perulangan2 == 0) { perulangan2 = 12;}
+
+
+					if (perulangan2 == 9){
+						tahunSaka--;
+					}
+
+					if (isNampih) {
+						isNampih = false;
+					}else{
+						if (((tahunSaka % 19) == 0)||((tahunSaka % 19) == 6)||((tahunSaka % 19) == 11)){
+							this.isNampih = (perulangan2==11) ? true : false;
+							if (perulangan2==10){perulangan2++;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 3)||((tahunSaka % 19) == 8)||((tahunSaka % 19) == 14)||((tahunSaka % 19) == 16)) {
+							this.isNampih = (perulangan2==12) ? true : false;
+							if (perulangan2==11){perulangan2++;jumlahNampih++;isNampih=true;}
+						}
+					}
+				}
+
+				this.noSasih = pivot.noSasih - hasilSasih + jumlahNampih;
+
+				if (this.noSasih < 0){
+					this.noSasih = 12 - (-this.noSasih%12);
+				}
+				if (this.noSasih == 0 ){this.noSasih = 12;}
+
+				this.tahunSaka = tahunSaka;
+				if (this.isPangelong && this.penanggal == 15 && this.isNgunaratri && this.isNampih){this.isNampih = false;} // Ubah isnampih menjadi false apabila berada di ngunaratri di awal penanggal
+			}
+		}else{
+			// Nampih Sasih berkesinambungan
+			if (bedaHari >= 0){
+
+				if (pivot.isPangelong){
+					bedaHari = bedaHari + 15 + (pivot.penanggal - 1);
+					hasilSasih = (bedaHari + jumlahNgunaratri ) / 30 ;
+				}else{
+					bedaHari = bedaHari + (pivot.penanggal - 1);
+					hasilSasih = (bedaHari + jumlahNgunaratri ) / 30 ;
+				}
+
+				// menghitung tahun saka dan jumlah nampih sasih
+				while (perulangan1 < hasilSasih){
+					perulangan1++;
+					perulangan2++;
+					perulangan2 = perulangan2 % 12;
+					if (perulangan2 == 0) { perulangan2 = 12;}
+
+
+					if (perulangan2 == 10){
+						tahunSaka++;
+					}
+
+					if (isNampih) {
+						isNampih = false;
+					}else{
+						if (((tahunSaka % 19) == 2)||((tahunSaka % 19) == 10)){
+							this.isNampih = (perulangan2==12) ? true : false;
+							if (perulangan2==1){perulangan2--;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 4)) {
+							this.isNampih = (perulangan2==4) ? true : false;
+							if (perulangan2==5){perulangan2--;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 7)) {
+							this.isNampih = (perulangan2==2) ? true : false;
+							if (perulangan2==3){perulangan2--;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 13)) {
+							this.isNampih = (perulangan2==11) ? true : false;
+							if (perulangan2==12){perulangan2--;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 15)) {
+							this.isNampih = (perulangan2==3) ? true : false;
+							if (perulangan2==4){perulangan2--;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 18)) {
+							this.isNampih = (perulangan2==1) ? true : false;
+							if (perulangan2==2){perulangan2--;jumlahNampih++;isNampih=true;}
+						}
+					}
+				}
+
+				this.noSasih = (hasilSasih - jumlahNampih + pivot.noSasih)%12  ;
+				if (this.isNampih){this.noSasih--;}
+
+				if (this.noSasih < 0){
+					this.noSasih = 12 - (-this.noSasih%12);
+				}
+				if (this.noSasih == 0 ){this.noSasih = 12;}
+
+				this.tahunSaka = tahunSaka;
+
+			}else{ //Mundur
+
+
+				if (pivot.isPangelong){
+					bedaHari = bedaHari - (15 - pivot.penanggal);
+					hasilSasih = -(bedaHari - jumlahNgunaratri ) / 30 ;
+				}else{
+					bedaHari = bedaHari - 15 - (15 - pivot.penanggal);
+					hasilSasih = -(bedaHari - jumlahNgunaratri ) / 30 ;
+				}
+
+
+
+				while (perulangan1 < hasilSasih){
+					perulangan1++;
+					perulangan2--;
+					perulangan2 = perulangan2 % 12;
+					if (perulangan2 == 0) { perulangan2 = 12;}
+
+					if (perulangan2 == 9){
+						tahunSaka--;
+					}
+
+					if (isNampih) {
+						isNampih = false;
+					}else{
+						if (((tahunSaka % 19) == 2)||((tahunSaka % 19) == 10)){
+							this.isNampih = (perulangan2==11) ? true : false;
+							if (perulangan2==10){perulangan2++;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 4)) {
+							this.isNampih = (perulangan2==3) ? true : false;
+							if (perulangan2==2){perulangan2++;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 7)) {
+							this.isNampih = (perulangan2==1) ? true : false;
+							if (perulangan2==12){perulangan2++;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 13)) {
+							this.isNampih = (perulangan2==10) ? true : false;
+							if (perulangan2==9){perulangan2++;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 15)) {
+							this.isNampih = (perulangan2==2) ? true : false;
+							if (perulangan2==1){perulangan2++;jumlahNampih++;isNampih=true;}
+						}else if (((tahunSaka % 19) == 18)) {
+							this.isNampih = (perulangan2==12) ? true : false;
+							if (perulangan2==11){perulangan2++;jumlahNampih++;isNampih=true;}
+						}
+					}
+				}
+
+				this.noSasih = pivot.noSasih - hasilSasih + jumlahNampih;
+
+				if (this.noSasih < 0){
+					this.noSasih = 12 - (-this.noSasih%12);
+				}
+				if (this.noSasih == 0 ){this.noSasih = 12;}
+
+
+				this.tahunSaka = tahunSaka;
+				if (this.isPangelong && this.penanggal == 15 && this.isNgunaratri && this.isNampih){this.isNampih = false;} // Ubah is nampih menjadi false apabila berada di ngunaratri di awal penanggal
+			}
+		}
+
+	}
 
 }
