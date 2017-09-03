@@ -32,15 +32,25 @@ public class SakaCalendar extends GregorianCalendar {
 	public final static int NO_PANCAWARA = 0;
 	public final static int URIP_PANCAWARA = 1;
 
+	public final static int TAHUN_SAKA = 0;
+	public final static int PENANGGAL = 1;
+	public final static int NO_NGUNARATRI = 2;
+	public final static int NO_SASIH = 3;
+
+	public final static int NGUNARATRI = 0;
+	public final static int PANGELONG = 1;
+	public final static int NAMPIH = 2;
+
+
 	SakaCalendarPivot pivot;
 
-	private int noNgunaratri;
-	private int penanggal;
-	private boolean isPangelong;
-	private boolean isNgunaratri;
-	private boolean isNampih;
 	private int tahunSaka;
+	private int penanggal;
+	private int noNgunaratri;
 	private int noSasih;
+	private boolean isNgunaratri;
+	private boolean isPangelong;
+	private boolean isNampih;
 	// TODO : Tambah disini
 
 	public SakaCalendar(){
@@ -1686,6 +1696,31 @@ public class SakaCalendar extends GregorianCalendar {
 			}
 		}
 
+	}
+
+	public int getSakaCalendar(int field) {
+		if(this.tahunSaka == 0){
+			hitungSaka();
+		}
+		switch (field){
+			case TAHUN_SAKA: return this.tahunSaka;
+			case PENANGGAL: return this.penanggal;
+			case NO_NGUNARATRI: return noNgunaratri;
+			case NO_SASIH: return noSasih;
+			default: return this.tahunSaka;
+		}
+	}
+
+	public boolean getSakaCalendarStatus(int field) {
+		if(this.tahunSaka == 0){
+			hitungSaka();
+		}
+		switch (field){
+			case NGUNARATRI: return this.isNgunaratri;
+			case PANGELONG: return this.isPangelong;
+			case NAMPIH: return isNampih;
+			default: return this.isNgunaratri;
+		}
 	}
 
 }
