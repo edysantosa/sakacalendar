@@ -89,11 +89,11 @@ public class SakaCalendar extends GregorianCalendar {
 	/*** Fungsi menambahkan tanggal-tanggal pivot ***/
 	private SakaCalendarPivot getPivots(long timestamp) {
 		SakaCalendarPivot pivot = new SakaCalendarPivot();
-		if (timestamp >= 946684800){
+		if (timestamp >= 946684800 - pivot.get(Calendar.ZONE_OFFSET ) ){
 			// Setelah 30 Desember 1999
 			// Pengalantaka Eka Sungsang ke Pahing
 			// TODO : Pastikan kapan mulai berlakunya Pengalantaka Eka Sungsang ke Pahing!
-			pivot.setTimeInMillis(946684800); //2000-01-01
+			pivot.setTimeInMillis(946684800 * 1000L - pivot.get(Calendar.ZONE_OFFSET ) ); //2000-01-01
 			pivot.noWuku = 10;
 			pivot.angkaWuku = 70;
 			pivot.tahunSaka = 1921;
