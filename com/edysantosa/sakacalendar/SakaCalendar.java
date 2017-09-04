@@ -159,9 +159,8 @@ public class SakaCalendar extends GregorianCalendar {
 		int uripWuku;
 		int noWuku;
 
-		if (bedaHari >= 0){
-			angkaWuku = (int)(pivot.angkaWuku + bedaHari)%210 ;
-		}else{
+		angkaWuku = (int)(pivot.angkaWuku + bedaHari)%210 ;
+		if (angkaWuku < 0){
 			angkaWuku = 210 - (int)((-(pivot.angkaWuku + bedaHari))%210) ;
 		}
 		if (angkaWuku == 0){ angkaWuku = 210; }
