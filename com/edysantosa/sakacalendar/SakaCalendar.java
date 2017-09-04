@@ -115,7 +115,7 @@ public class SakaCalendar extends GregorianCalendar {
 			pivot.noNgunaratri = 50;
 			pivot.isNgunaratri = false;
 		}
-		System.out.println(pivot.getTime());
+
 		return pivot;
 	}
 
