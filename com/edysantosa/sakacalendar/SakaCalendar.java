@@ -34,8 +34,8 @@ public class SakaCalendar extends GregorianCalendar {
 
 	public final static int TAHUN_SAKA = 0;
 	public final static int PENANGGAL = 1;
-	public final static int NO_NGUNARATRI = 2;
-	public final static int NO_SASIH = 3;
+	public final static int NO_SASIH = 2;
+	public final static int NO_NGUNARATRI = 3;
 
 	public final static int NGUNARATRI = 0;
 	public final static int PANGELONG = 1;
@@ -105,7 +105,7 @@ public class SakaCalendar extends GregorianCalendar {
 		}else{
 			// 30 Desember 1999 kebelakang
 			// Pengalantaka Eka Sungsang ke Pon
-			pivot.setTimeInMillis(0); //1970-01-01
+			pivot.setTimeInMillis(0 * 1000L); //1970-01-01
 			pivot.noWuku = 5;
 			pivot.angkaWuku =33;
 			pivot.tahunSaka = 1891;
