@@ -22,26 +22,101 @@
 package com.edysantosa.sakacalendar;
 import java.util.*;
 
+/**
+ * The type Saka calendar.
+ */
 public class SakaCalendar extends GregorianCalendar {
 
+	/**
+	 * Constant untuk mendapatkan <code>noWuku</code> dari method {@link SakaCalendar#getWuku(int)  getWuku()}.
+	 * @see #ANGKA_WUKU
+	 * @see #URIP_WUKU
+	 */
 	public final static int NO_WUKU = 0;
+	/**
+	 * Constant untuk mendapatkan <code>angkaWuku</code> dari method {@link SakaCalendar#getWuku(int)  getWuku}.
+	 * @see #NO_WUKU
+	 * @see #URIP_WUKU
+	 */
 	public final static int ANGKA_WUKU = 1;
+	/**
+	 * Constant untuk mendapatkan <code>uripWuku</code> dari method {@link SakaCalendar#getWuku(int)  getWuku}.
+	 * @see #NO_WUKU
+	 * @see #ANGKA_WUKU
+	 */
 	public final static int URIP_WUKU = 2;
+	/**
+	 * Constant untuk mendapatkan <code>noSaptawara</code> dari method {@link SakaCalendar#getSaptawara(int)  getSaptawara}.
+	 * @see #URIP_SAPTAWARA
+	 */
 	public final static int NO_SAPTAWARA = 0;
+	/**
+	 * Constant untuk mendapatkan <code>uripSaptawara</code> dari method {@link SakaCalendar#getSaptawara(int)  getSaptawara}.
+	 * @see #NO_SAPTAWARA
+	 */
 	public final static int URIP_SAPTAWARA = 1;
+	/**
+	 * Constant untuk mendapatkan <code>noPancawara</code> dari method {@link SakaCalendar#getPancawara(int)  getPancawara}.
+	 * @see #URIP_PANCAWARA
+	 */
 	public final static int NO_PANCAWARA = 0;
+	/**
+	 * Constant untuk mendapatkan <code>uripPancawara</code> dari method {@link SakaCalendar#getPancawara(int)  getPancawara}.
+	 * @see #NO_PANCAWARA
+	 */
 	public final static int URIP_PANCAWARA = 1;
 
+	/**
+	 * Constant untuk mendapatkan <code>tahunSaka</code> dari method {@link SakaCalendar#getSakaCalendar(int)  getSakaCalendar}.
+	 * @see #PENANGGAL
+	 * @see #NO_SASIH
+	 * @see #NO_NGUNARATRI
+	 */
 	public final static int TAHUN_SAKA = 0;
+	/**
+	 * Constant untuk mendapatkan <code>penanggal</code> dari method {@link SakaCalendar#getSakaCalendar(int)  getSakaCalendar}.
+	 * @see #TAHUN_SAKA
+	 * @see #NO_SASIH
+	 * @see #NO_NGUNARATRI
+	 */
 	public final static int PENANGGAL = 1;
+	/**
+	 * Constant untuk mendapatkan <code>noSasih</code> dari method {@link SakaCalendar#getSakaCalendar(int)  getSakaCalendar}.
+	 * @see #TAHUN_SAKA
+	 * @see #PENANGGAL
+	 * @see #NO_NGUNARATRI
+	 */
 	public final static int NO_SASIH = 2;
+	/**
+	 * Constant untuk mendapatkan <code>noNgunaratri</code> dari method {@link SakaCalendar#getSakaCalendar(int)  getSakaCalendar}.
+	 * @see #TAHUN_SAKA
+	 * @see #PENANGGAL
+	 * @see #NO_SASIH
+	 */
 	public final static int NO_NGUNARATRI = 3;
+	/**
+	 * Constant untuk mendapatkan status apakah tanggal pada instance adalah ngunaratri atau bukan dari method {@link SakaCalendar#getSakaCalendarStatus(int)  getSakaCalendaStatusr}.
+	 * @see #IS_PANGELONG
+	 * @see #IS_NAMPIH
+	 */
+	public final static int IS_NGUNARATRI = 0;
+	/**
+	 * Constant untuk mendapatkan status apakah tanggal pada instance adalah pangelong atau penanggal dari method {@link SakaCalendar#getSakaCalendarStatus(int)  getSakaCalendaStatusr}.
+	 * @see #IS_NGUNARATRI
+	 * @see #IS_NAMPIH
+	 */
+	public final static int IS_PANGELONG = 1;
+	/**
+	 * Constant untuk mendapatkan status apakah tanggal pada instance adalah nampih sasih atau bukan dari method {@link SakaCalendar#getSakaCalendarStatus(int)  getSakaCalendaStatusr}.
+	 * @see #IS_NGUNARATRI
+	 * @see #IS_PANGELONG
+	 */
+	public final static int IS_NAMPIH = 2;
 
-	public final static int NGUNARATRI = 0;
-	public final static int PANGELONG = 1;
-	public final static int NAMPIH = 2;
 
-
+	/**
+	 * Class ini digunakan sebagai parameter acuan dalam melakukan perhitungan kalender bali
+	 */
 	SakaCalendarPivot pivot;
 
 	private int tahunSaka;
@@ -53,11 +128,22 @@ public class SakaCalendar extends GregorianCalendar {
 	private boolean isNampih;
 	// TODO : Tambah disini
 
+	/**
+	 * Membuat sebuah <code>SakaCalendar</code> pada hari saat ini.
+	 */
 	public SakaCalendar(){
 		super();
 		this.initialize();
 	}
 
+	/**
+	 * Membuat sebuah <code>SakaCalendar</code> dengan parameter yang diberikan.
+	 *
+	 * @param year nilai untuk mengeset tahun.
+	 * @param month nilai untuk mengeset tahun.
+	 * Parameter adalah 0-based.  e.g., 0 -> January.
+	 * @param dayOfMonth nilai untuk mengeset tanggal.
+	 */
 	public SakaCalendar(int year, int month, int dayOfMonth){
 		super(year, month , dayOfMonth);
 		this.initialize();
@@ -67,7 +153,9 @@ public class SakaCalendar extends GregorianCalendar {
 		this.pivot = getPivots(this.getTimeInMillis());
 	}
 
-	/*** Fungsi menambahkan tanggal-tanggal pivot ***/
+	/**
+	 * Method mendapatkan tanggal pivot
+	 */
 	private SakaCalendarPivot getPivots(long timestamp) {
 		SakaCalendarPivot pivot = new SakaCalendarPivot();
 		if (timestamp >= 946684800 * 1000L - pivot.get(Calendar.ZONE_OFFSET ) ){
@@ -101,23 +189,24 @@ public class SakaCalendar extends GregorianCalendar {
 	}
 
 
-	/*** Fungsi menghitung perbedaan hari antara 2 Timestamp ***/
+	/**
+	 * Method untuk menghitung perbedaan hari antara 2 Timestamp
+	 */
 	private long getDateDiff(long d1, long d2) {
 
-		/*
-		Catatan :
-			Kode lebih cantik jika menggunakan class baru dari java 8, java.time
-
-			"return ChronoUnit.DAYS.between(d1.toInstant(), d2.toInstant());"
-
-			Akan tetapi, setelah testing performanya lebih rendah rata-rata 2 s/d 3 milisecond.
-
+		/* Catatan :
+		 * Kode lebih cantik jika menggunakan class baru dari java 8.
+		 * java.time "return ChronoUnit.DAYS.between(d1.toInstant(), d2.toInstant());"
+		 * Akan tetapi, setelah testing performanya lebih rendah rata-rata 2 s/d 3 milisecond.
 		 */
 
 		double x = (d2 - d1) / (1000d * 60 * 60 * 24);
 		return (long)x;
 	}
 
+	/**
+	 * Inner class untuk menampung tanggal pivot yang akan digunakan dalam perhitungan kalendar Saka.
+	 */
 	private class SakaCalendarPivot extends GregorianCalendar {
 
 		int noWuku;
@@ -132,7 +221,223 @@ public class SakaCalendar extends GregorianCalendar {
 
 	}
 
-	/*** Fungsi menghitung pawukon ***/
+	/**
+	 * <p>
+	 * Wuku merupakan perhitungan tahun yang cukup unik, karena perhitungannya tidak mengacu pada peredaran benda-benda angkasa, tanpa bergantung pada perhitungan tahun surya (solar calendar) maupun tahun candra (lunar calendar). Satu tahun Wuku panjangnya adalah 420 hari, yang terdiri dari 30 Wuku dengan panjang 210 hari dikalikan 2.
+	 * Setiap Wuku panjangnya 7 hari terhitung dari Redite, Coma, Anggara, Buda, Wrhaspati, Sukra, dan Saniscara. Satu bulan dalam perhitungan tahun Wuku didapat dari 5 Wuku. Jadi 1 bulan dalam tahun Wuku adalah 35 hari yang didapat dengan mengalikan 7 hari dengan 5 Wuku.
+	 * <p>
+	 * Satu peredaran Wuku (30 Wuku) termasuk 6 bulan dalam tahun Wuku, 6 bulan ini didapat dengan mengalikan jumlah hari dalam 1 Wuku dengan jumlah Wuku (7 hari x 30 Wuku = 210 hari). 1 tahun Wuku terdiri dari 2 kali peredaran Wuku, yakni 7 hari x 30 Wuku x 2 = 420 hari.
+	 * <p>
+	 * Penamaan Wuku diambil dari nama-nama raja dalam mitologi Sang Watu Gunung.
+	 *
+	 * Informasi yang bisa didapatkan dari fungsi ini antara lain:
+	 *
+	 * <p><strong><code>angkaWuku</code></strong>. Adalah jumlah hari yang telah berlalu dalam wuku saat ini. e.g., 1 -> hari pertama Wuku dan 210 -> hari terakhir wuku </p>
+	 * <p><strong><code>noWuku</code></strong>. Merupakan representasi numerik dari Wuku. e.g., 1 -> Sinta, 2-> Landep dan seterusnya.</p>
+	 * <p><strong><code>uripWuku</code></strong>. Nilai urip/neptu dari Wuku.</p>
+	 *
+	 * <p>
+	 * Berikut ini adalah tabel wuku beserta neptunya(urip).
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="SakaCalendar"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Wuku</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Nama Raja</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Nama Wuku</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Neptu/Urip</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Dewi Sintakasih</td>
+	 *             <td>Sinta</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Dewi Sanjiwartia</td>
+	 *             <td>Landep</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Giriswara</td>
+	 *             <td>Ukir</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Kuladewa</td>
+	 *             <td>Kulantir</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Talu</td>
+	 *             <td>Tolu</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Mrabuana</td>
+	 *             <td>Gumbreg</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">7</td>
+	 *             <td>Waksaya</td>
+	 *             <td>Wariga</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">8</td>
+	 *             <td>Wariwiyasa</td>
+	 *             <td>Warigadean</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">9</td>
+	 *             <td>Mrikjulung</td>
+	 *             <td>Julungwangi</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">10</td>
+	 *             <td>Sungsangtaya</td>
+	 *             <td>Sungsang</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">11</td>
+	 *             <td>Dungulan</td>
+	 *             <td>Dungulan</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">12</td>
+	 *             <td>Puspita</td>
+	 *             <td>Kuningan</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">13</td>
+	 *             <td>Langkir</td>
+	 *             <td>Langkir</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">14</td>
+	 *             <td>Medangsu</td>
+	 *             <td>Medangsya</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">15</td>
+	 *             <td>Pujitpwa</td>
+	 *             <td>Pujut</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">16</td>
+	 *             <td>Paha</td>
+	 *             <td>Pahang</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">17</td>
+	 *             <td>Kruru</td>
+	 *             <td>Kerulut</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">18</td>
+	 *             <td>Merangsinga</td>
+	 *             <td>Merakih</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">19</td>
+	 *             <td>Tambur</td>
+	 *             <td>Tambir</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">20</td>
+	 *             <td>Medangkusa</td>
+	 *             <td>Medangkungan</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">21</td>
+	 *             <td>Matal</td>
+	 *             <td>Matal</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">22</td>
+	 *             <td>Uye</td>
+	 *             <td>Uye</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">23</td>
+	 *             <td>Ijala</td>
+	 *             <td>Menahil</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">24</td>
+	 *             <td>Yuddha</td>
+	 *             <td>Perangbakat</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">25</td>
+	 *             <td>Baliraja</td>
+	 *             <td>Bala</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">26</td>
+	 *             <td>Wiugah</td>
+	 *             <td>Ugu</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">27</td>
+	 *             <td>Ringgita</td>
+	 *             <td>Wayang</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">28</td>
+	 *             <td>Kulawudra</td>
+	 *             <td>Kelawu</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">29</td>
+	 *             <td>Sasawi</td>
+	 *             <td>Dukut</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">30</td>
+	 *             <td>Watugunung</td>
+	 *             <td>Watugunung</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 * @param field Constant yang merepresentasikan informasi yang diinginkan {@link SakaCalendar#NO_WUKU NO_WUKU}, {@link SakaCalendar#ANGKA_WUKU ANGKA_WUKU}, dan {@link SakaCalendar#URIP_WUKU URIP_WUKU}.
+	 * @return informasi yang diinginkan.
+	 */
 	public int getWuku(int field){
 
 		long bedaHari = getDateDiff(pivot.getTimeInMillis(),this.getTimeInMillis());
@@ -253,11 +558,68 @@ public class SakaCalendar extends GregorianCalendar {
 		}
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini antara lain:
+	 * <p><strong><code>noSaptawara</code></strong>. Merupakan representasi numerik dari Saptawara. <code>noSaptawara</code> adalah 0-based. e.g., 0 -> Redite, 1-> Soma dan seterusnya.</p>
+	 * <p><strong><code>uripSaptawara</code></strong>. Nilai urip/neptu dari Saptawara.</p>
+	 * <p>
+	 * Perhitungan <code>noSaptawara</code> hanya dilakukan menggunakan DAY_OF_WEEK dari SakaCalendar.
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Sapta Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Sapta Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Sapta Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Urip/Neptu</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">0</td>
+	 *             <td>Redite</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Coma</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Anggara</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Buddha</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Wrhaspati</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Sukra</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Saniscara</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @param field Constant yang merepresentasikan informasi yang diinginkan {@link SakaCalendar#NO_SAPTAWARA NO_SAPTAWARA}, dan {@link SakaCalendar#NO_SAPTAWARA NO_SAPTAWARA}.
+	 * @return informasi yang diinginkan.
+	 */
 	public int getSaptawara(int field){
-		/*
-		* Perhitungan saptawara hanya mengecek DAY_OF_WEEK dari SakaCalendar
-		*/
-	
+
 		int noSaptawara = 0;
 		int uripSaptawara = 5;
 
@@ -301,22 +663,64 @@ public class SakaCalendar extends GregorianCalendar {
 		}		
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini antara lain:
+	 * <p><strong><code>noPancawara</code></strong>. Merupakan representasi numerik dari Pancawara. e.g., 1 -> Umanis, 2-> Pahing dan seterusnya.</p>
+	 * <p><strong><code>uripPancawara</code></strong>. Nilai urip/neptu dari Pancawara.</p>
+	 *
+	 * <p>
+	 * Perhitungan <code>noPancawara</code> pada fungsi ini menggunakan rumus <code>(modulus 5 dari angka pawukon) + 1</code>.
+	 * Namun, terdapat rumus lainnya yaitu <code>(No. wuku * 7 + No. Sapta Wara) mod 5<code>, dimana bila sisa 1 Umanis, sisa 2 Pahing, sisa 3 Pon, sisa 4 Wage, dan apabila habis terbagi adalah Kliwon.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Panca Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Panca Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Panca Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Urip/Neptu</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Umanis</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Pahing</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Pon</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Wage</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Kliwon</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @param field Constant yang merepresentasikan informasi yang diinginkan {@link SakaCalendar#NO_PANCAWARA NO_PANCAWARA}, dan {@link SakaCalendar#URIP_PANCAWARA URIP_PANCAWARA}.
+	 * @return informasi yang diinginkan.
+	 *
+	 */
 	public int getPancawara(int field){
 
-		/*
-		* Perhitungan pancawara 
-		* Menggunakan rumus dari babadbali.com : "Murni aritmatika, modulus 5 dari angka pawukon menghasilkan 0=Umanis, 1=Paing, 2=Pon, 3=Wage, 4=Kliwon.
-		* Pada SakaCalendar menjadi : 
-		* 0 + 1 = 1 Umanis
-		* 1 + 1 = 2 Paing
-		* 2 + 1 = 3 Pon
-		* 3 + 1 = 4 Wage	
-		* 4 + 1 = 5 Kliwon
-		*/
-	
 		int noPancawara = (this.getWuku(ANGKA_WUKU) % 5) + 1 ;
-		int uripPancawara = 5;
-
+		int uripPancawara;
 
 		// mendapatkan urip pancawara
 		switch (noPancawara) {
@@ -330,7 +734,8 @@ public class SakaCalendar extends GregorianCalendar {
 			uripPancawara = 4;break;
 		case 5:
 			uripPancawara = 8;break;
-		default:break;
+		default:
+			uripPancawara = 5;break;
 		}
 
 		switch(field){
@@ -340,27 +745,84 @@ public class SakaCalendar extends GregorianCalendar {
 		}		
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noTriwara</code></strong> yang merupakan representasi numerik dari Tri Wara. 1 -> Pasah, 2-> Beteng dan seterusnya.</p>
+	 *
+	 * <p>
+	 * Perhitungan <code>noTriwara</code> pada fungsi ini menggunakan rumus <code>angkaWuku mod 3</code>. Sisa 1 adalah Pasah, 2 adalah Beteng, 0 adalah Kajeng.
+	 * Rumus lainnya yaitu <code>(noWuku dikalikan dengan 7  ditambah dengan noSaptawara) mod 3<code>.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Tri Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Tri Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Tri Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Urip/Neptu</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Dora/Pasah</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Wahya/Beteng</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Byantara/Kajeng</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noTriwara.
+	 *
+	 */
 	public int getTriwara(){
-		/*
-		* Perhitungan triwara
-		* Menggunakan rumus dari babadbali.com : "Perhitungan triwara murni aritmatika, berdaur dari ketiganya. Angka Pawukon dibagi 3, jika sisanya (modulus) 1 adalah Pasah, 2 adalah Beteng, 0 adalah Kajeng"
-		* Pada SakaCalendar menjadi : 
-		* 1 Pasah
-		* 2 Beteng
-		* 0 -> 3 kajeng
-		*/
 		int noTriwara = this.getWuku(ANGKA_WUKU) % 3;
 		if (noTriwara == 0){noTriwara = 3;}
 		return noTriwara;
-	}	
+	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noEkawara</code></strong> yang merupakan representasi numerik dari Eka Wara. 1 -> Luang, 0-> bukan Luang(kosong).</p>
+	 *
+	 * <p>
+	 * Perhitungan <code>noEkawara</code> dilakukan dengan menambahkan urip Sapta Wara dan Panca Wara, Luang didapatkan jika hasil penjumlahan merupakan angka ganjil.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Eka Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Eka Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Eka Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Urip/Neptu</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Luang</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noEkawara.
+	 *
+	 */
 	public int getEkawara(){
-		/*
-		* Perhitungan ekawara
-		* Pada SakaCalendar : 
-		* 1 Luang
-		* 2 Bukan luang (kosong)
-		*/
 		int noEkawara = (this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 2;
 		if (noEkawara!=0){
 			return 1; //Jika tidak habis dibagi 2 maka luang
@@ -369,13 +831,42 @@ public class SakaCalendar extends GregorianCalendar {
 		}		
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noDwiwara</code></strong> yang merupakan representasi numerik dari Dwi Wara. 1 -> Menga, 2-> bukan Pepet.</p>
+	 *
+	 * <p>
+	 * Perhitungan <code>noDwiwara</code> mirip dengan Eka Wara, jika hasil penjumlahan urip Sapta Wara dan Panca Wara adalah ganjil maka didapatkan Dwi Wara Pepet, sedangkan Menga jika genap.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Dwi Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Dwi Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Dwi Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Urip/Neptu</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Menga</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Pepet</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noDwiwara.
+	 *
+	 */
 	public int getDwiwara(){
-		/*
-		* Perhitungan dwiwara
-		* Pada SakaCalendar : 
-		* 1 Menga
-		* 2 Pepet
-		*/
 		int noDwiwara = (this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 2;
 		if (noDwiwara==0){
 			return 1; //Jika habis dibagi 2 maka menga
@@ -384,17 +875,70 @@ public class SakaCalendar extends GregorianCalendar {
 		}		
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noCaturwara</code></strong> yang merupakan representasi numerik dari Catur Wara. 1 -> Sri, 2-> Laba.</p>
+	 *
+	 * <p>Dalam mencari Catur Wara, ada dua rumus yang dipakai,
+	 * yakni rumus yang berlaku dari wuku Sinta hari (wara) Redite hingga wuku Dungulan dari (wara) Redite;
+	 * dan rumus yang berlaku dari wuku Dungulan hari (wara) Budha hingga wuku Watugunung hari (wara) Saniscara.
+	 * Ini terjadi karena ada hitungan pengecualian yang dikenal dengan istilah Jaya Tiga
+	 * dimulai dari hari Redite wuku Dungulan hingga Angkara wuku Dungulan,
+	 * jadi pada hari Coma dan Anggara wuku Dungulan adalah pengecualian.</p>
+	 *
+	 * <p>Rumus pertama nomor wuku dikali 7 ditambah 2 ditambah nomor Sapta Wara dibagi 4;
+	 * dan rumus kedua Wuku dikali 7 ditambah nomor Sapta Wara di bagi 4.
+	 * Apabila sisa pembagian berjumlah 1 artinya Sri, sisa 2 Laba,  sisa 3 Jaya, dan jika habis terbagi terhitung Menala.</p>
+	 *
+	 * <p><em>Contoh. </em> (Berlaku dari Redite wuku Shinta hingga Redite wuku Dungulan / rumus pertama)
+	 * Wuku Dungulan = 11, dan Sapta Wara Redite = 0. Maka 11 x 7 + 2 + 0 : 4 = 19 sisa 3.
+	 * Jadi pada wuku Dungulan hari (wara) Redite, Catur Waranya adalah Jaya.</p>
+	 *
+	 * <p><em>Contoh 2. </em> (berlaku dari Budha wuku Dungulan hingga Saniscara wuku Watugunung / rumus kedua)
+	 * Wuku Langkir = 13 ; Spta Wara Sukra = 5. Maka 13 x 7 + 5 : 4 = 24 tanpa sisa (0).
+	 * Jadi Catur Wara dalam wuku Langkir, hari (wara) Sukra adalah Mandala.</p>
+	 *
+	 * <p>Pada fungsi ini, dengan menggunakan angkaWuku perhitungan
+	 * rumus pertama menjadi <code>(angkaWuku + 2) mod 4</code>,
+	 * rumus kedua (jika angka wuku <= 70) menjadi <code>angkaWuku mod 4</code>, dan untuk Jaya Tiga pada angka wuku [71,72,73]</p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Catur Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Catur Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Catur Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Neptu/Urip</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Sri</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Laba</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Jaya</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Mandala</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noCaturwara.
+	 */
 	public int getCaturwara(){
-		/*
-		* Perhitungan caturwara
-		* Pada wuku dengan angka wuku 71,72,73 caturwara tetap jaya yang disebut dengan Jayatiga
-		* Pada SakaCalendar : 
-		* 1 Sri
-		* 2 Laba
-		* 3 Jaya
-		* 0 -> Menala
-		*/
-	
 		int angkaWuku  = this.getWuku(ANGKA_WUKU);
 		int noCaturwara;
 
@@ -409,37 +953,149 @@ public class SakaCalendar extends GregorianCalendar {
 		return noCaturwara;
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noSadwara</code></strong> yang merupakan representasi numerik dari Sad Wara. 1 -> Tungleh, 2-> Aryang, dan seterusnya.</p>
+	 *
+	 * <p>Perhitungan Sad Wara dilakukan dengan rumus ((noWuku * 7 + noSaptawara) mod 6).
+	 * Jika sisa 1 adalah Tungleh, sisa 2 Aryang, sisa 3 Wurukung, sisa 4 Paniron, sisa 5 Was, dan apabila habis terbagi adalah Maulu.</p>
+	 *
+	 * <p><em>Contoh. </em> Wuku Menail (29), Sapta Wara Wraspati (4)
+	 * Maka 29 x 7 + 4 : 6 = 34 sisa 3.
+	 * Jadi pada wuku menail, hari (wara) Wrhaspati, Sad Waranya adalah Wurukung.</p>
+	 *
+	 * <p>Pada fungsi ini, dengan menggunakan angkaWuku perhitungan
+	 * disingkat menjadi <code>angkaWuku mod 6</code></p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Sad Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Sad Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Sad Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Neptu/Urip</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Tungleh</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Aryang</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Wurukung</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Paniron</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Was</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Maulu</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noSadwara.
+	 */
 	public int getSadwara(){
-		/*
-		* Perhitungan sadwara
-		* Pada SakaCalendar : 
-		* 1 Tungleh
-		* 2 Aryang
-		* 3 Urukung
-		* 4 Paniron
-		* 5 Was
-		* 0 -> 6 Maulu
-		*/
 		int noSadwara = this.getWuku(ANGKA_WUKU) % 6;
 		if (noSadwara == 0){noSadwara = 6;}
 		return noSadwara;		
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noAstawara</code></strong> yang merupakan representasi numerik dari Asta Wara. 1 -> Sri, 2-> Indra, dan seterusnya.</p>
+	 *
+	 * <p>Rumus perhitungan Asta Wara mirip seperti rumus perhitungan Catur Wara,
+	 * didasari atas adanya pengecualian yang dikenal dengan istilah Kala tiga Dungulan.
+	 * Penetapan kala Tiga dalam Asta Wara terdapat pada hari Redite Wuku Dunggulan,
+	 * Soma Wuku Dunggulan, dan Anggara Wuku Dunggulan.
+	 * Jadi Soma dan Anggara Wuku Dunggulan adalah hitungan pengecualian.</p>
+	 *
+	 * <p>Rumus pertama berlaku dari Redite Wuku Sinta hingga Redite Wuku Dunggulan <code>(noWuku * 7 + 2 + noSaptawara) mod 6</code>.</p>
+	 *
+	 * <p>Rumus kedua berlaku dari Budha Wuku Dunggulan hingga Saniscara Wuku Watugunung <code>(noWuku * 7 + noSaptawara) mod 8</code>.</p>
+	 *
+	 * <p>Apabila sisa 1 adalah Sri, sisa 2 Indra, sisa 3 Guru, sisa 4 yama, sisa 5 Rudra, sisa 6 Brahma, sisa 7 Kala, dan jika habis terbagi terhitung Uma.</code>
+	 *
+	 * <p>Pada fungsi ini, dengan menggunakan angkaWuku perhitungan
+	 * rumus pertama menjadi <code>(angkaWuku + 6) mod 8</code>,
+	 * rumus kedua (jika angka wuku <= 70) menjadi <code>angkaWuku mod 8</code>, dan untuk Kala Tiga pada angka wuku [71,72,73]</p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Asta Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Asta Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Asta Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Neptu/Urip</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Sri</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Indra</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Guru</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Yama</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Ludra</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Brahma</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">7</td>
+	 *             <td>Kala</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">8</td>
+	 *             <td>Uma</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noAstawara.
+	 */
 	public int getAstawara(){
-		/*
-		* Perhitungan astawara
-		* Pada wuku dengan angka wuku 71,72,73 astawara tetap kala yang disebut dengan Kalatiga
-		* Pada SakaCalendar : 
-		* 1 Sri
-		* 2 Indra
-		* 3 Guru
-		* 4 Yama
-		* 5 Ludra
-		* 6 Brahma
-		* 7 kala
-		* 0 -> 8 Uma
-		*/
-	
 		int noAstawara;
 		int angkaWuku  = this.getWuku(ANGKA_WUKU);
 		
@@ -454,22 +1110,82 @@ public class SakaCalendar extends GregorianCalendar {
 		return noAstawara;
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <code>noSangawara</code></strong> yang merupakan representasi numerik dari Sanga Wara. 1 -> Sri, 2-> Indra, dan seterusnya.</p>
+	 *
+	 * <p>Rumus mencari Sanga Wara adalah <code>(noWuku * 7 + noSaptawara) mod 9<code>,
+	 *  jika sisa 1 Dangu, sisa 2 Jangur, sisa 3 Gigis, sisa 4 Nohan, sisa 5 Ogan, sisa 6 Erangan,
+	 *  sisa 7 Urungan, sisa 8 Tulus, dan habis dibagi adalah Dadi. Namun terdapat catatan pada rumus ini yaitu
+	 *  rumus ini tidak dapat digunakan pada hari Redite, Soma, Anggara pada Wuku Sinta
+	 *  karena ada ketentuan Dangu Pat yakni hitungan Dangu yang terjadi 4 hari berturut-turut</p>
+	 *
+	 * <p>Pada fungsi ini, dengan menggunakan angkaWuku perhitungan
+	 * disingkat menjadi <code>(angkaWuku + 6) % 9</code>,
+	 * dan Dangu Pat (jika angka wuku <= 4).</p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Sanga Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Sanga Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Sanga Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Neptu/Urip</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Dangu</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Jagur</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Gigis</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Nohan</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Ogan</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Erangan</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">7</td>
+	 *             <td>Urungan</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">8</td>
+	 *             <td>Tulus</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">9</td>
+	 *             <td>Dadi</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noSangawara.
+	 */
 	public int getSangawara(){
-		/*
-		* Perhitungan sangawara
-		* Pada wuku dengan angka wuku 1-4 sangawara tetap dangu yang disebut dengan Caturdangu
-		* Pada SakaCalendar : 
-		* 1 Dangu
-		* 2 Jangur
-		* 3 Gigis
-		* 4 Nohan
-		* 5 Ogan
-		* 6 Erangan
-		* 7 Urungan
-		* 8 Tulus
-		* 0 -> 9 Dadi
-		*/
-
 		int noSangawara;
 		int angkaWuku  = this.getWuku(ANGKA_WUKU);	
 
@@ -482,26 +1198,95 @@ public class SakaCalendar extends GregorianCalendar {
 		return noSangawara;		
 	}
 
+	/**
+	 * Informasi yang bisa didapatkan dari fungsi ini adalah <strong><code>noDasawara</code></strong> yang merupakan representasi numerik dari Dasa Wara. 1 -> Pandita, 2-> Pati, dan seterusnya.</p>
+	 *
+	 * <p>Dasa Wara dihitung dengan rumus <code>(uripSaptawara + uripPancawara + 1) mod 10</code>,
+	 * apabila sisa 1 artinya pandita, sisa 2 pati, sisa 3 Suka, sisa 4 Duka, sisa 5 Sri,
+	 * sisa 6 Manuh, sisa 7 Manusa, sisa 8 Raja, sisa 9 Dewa,
+	 * dan apabila habis adalah Raksasa.
+	 *
+	 * <p>Pada fungsi ini, terdapat sedikit perbedaan dengan rumus <code>((uripSaptawara + uripPancawara) mod 10) + 1</code>
+	 * untuk mendapatkan representasi <strong><code>noDasawara</code></strong> yang diinginkan</p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Dasa Wara"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Dasa Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Dasa Wara</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Neptu/Urip</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Pandita</td>
+	 *             <td style="text-align: center;">5</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Pati</td>
+	 *             <td style="text-align: center;">7</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Suka</td>
+	 *             <td style="text-align: center;">10</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Duka</td>
+	 *             <td style="text-align: center;">4</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Sri</td>
+	 *             <td style="text-align: center;">6</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Manu</td>
+	 *             <td style="text-align: center;">2</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">7</td>
+	 *             <td>Manusa</td>
+	 *             <td style="text-align: center;">3</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">8</td>
+	 *             <td>Raja</td>
+	 *             <td style="text-align: center;">8</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">9</td>
+	 *             <td>Dewa</td>
+	 *             <td style="text-align: center;">9</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">10</td>
+	 *             <td>Raksasa</td>
+	 *             <td style="text-align: center;">1</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noDasawara.
+	 */
 	public int getDasawara(){
-		/*
-		* Perhitungan dasawara 
-		* Pada SakaCalendar menjadi : 
-		* 0 + 1 = 1 Pandita
-		* 1 + 1 = 2 Pati
-		* 2 + 1 = 3 Suka
-		* 3 + 1 = 4 Duka	
-		* 4 + 1 = 5 Sri
-		* 5 + 1 = 6 Manuh
-		* 6 + 1 = 7 Manusa
-		* 7 + 1 = 8 Raja
-		* 8 + 1 = 9 Dewa
-		* 9 + 1 = 10 Raksasa
-		*/
 		return (((this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 10)+1);
 	}
 
 
-    public int getIngkel(){
+	/**
+	 * Get ingkel int.
+	 *
+	 * @return the int
+	 */
+	public int getIngkel(){
         /*
         * Pada SakaCalendar : 
         * 1 Wong
@@ -529,9 +1314,9 @@ public class SakaCalendar extends GregorianCalendar {
         
         return noIngkel;
     }
-    
-    /*** Fungsi menghitung jejepan ***/
-    public int getJejepan(){
+
+	/*** Fungsi menghitung jejepan  @return the int*/
+	public int getJejepan(){
         /*
         * Pada SakaCalendar : 
         * 1 Mina
@@ -547,9 +1332,9 @@ public class SakaCalendar extends GregorianCalendar {
         if (noJejepan == 0){noJejepan = 6;}
         return noJejepan;
     }
-    
-    /*** Fungsi menghitung pewatekan alit ***/
-    public int getWatekAlit(){
+
+	/*** Fungsi menghitung pewatekan alit  @return the int*/
+	public int getWatekAlit(){
 
         /*
         * Pada SakaCalendar :
@@ -565,8 +1350,8 @@ public class SakaCalendar extends GregorianCalendar {
         return noWatekAlit;
     }
 
-    /*** Fungsi menghitung pewatekan madya ***/
-    public int getWatekMadya(){
+	/*** Fungsi menghitung pewatekan madya  @return the int*/
+	public int getWatekMadya(){
 
         /*
         * Pada SakaCalendar :
@@ -583,8 +1368,8 @@ public class SakaCalendar extends GregorianCalendar {
         return noWatekMadya;
     }
 
-    /*** Fungsi menghitung eka jala rsi ***/
-    public int getEkaJalaRsi(){
+	/*** Fungsi menghitung eka jala rsi  @return the int*/
+	public int getEkaJalaRsi(){
 
         /*
         * Pada SakaCalendar :
@@ -990,8 +1775,8 @@ public class SakaCalendar extends GregorianCalendar {
         return noEkaJalaRsi;
     }
 
-    /*** Fungsi menghitung palalintangan ***/
-    public int getLintang(){
+	/*** Fungsi menghitung palalintangan  @return the int*/
+	public int getLintang(){
 
         /*
         * Pada SakaCalendar :
@@ -1104,8 +1889,8 @@ public class SakaCalendar extends GregorianCalendar {
 
     }
 
-    /*** Fungsi menghitung panca sudha ***/
-    public int getPancasudha(){
+	/*** Fungsi menghitung panca sudha  @return the int*/
+	public int getPancasudha(){
 
         /*
         * Pada SakaCalendar :
@@ -1139,8 +1924,8 @@ public class SakaCalendar extends GregorianCalendar {
         return noPancasudha;
     }
 
-    /*** Fungsi menghitung pararasan ***/
-    public int getPararasan(){
+	/*** Fungsi menghitung pararasan  @return the int*/
+	public int getPararasan(){
 
         /*
         * Pada SakaCalendar :
@@ -1189,8 +1974,8 @@ public class SakaCalendar extends GregorianCalendar {
         return noPararasan;
     }
 
-    /*** Fungsi menghitung rakam ***/
-    public int getRakam(){
+	/*** Fungsi menghitung rakam  @return the int*/
+	public int getRakam(){
 
         /*
         * Menggunakan rumus dari babadbali.com : "Dari hari Sukra diberi angka urut 1 sampai Wrespati - kemudian dari Kliwon juga diberi angka urut sampai Wage. Angka urutan itu dibagi dengan 6, sisanya mencerminkan sifat pimpinan yang akan dinobatkan nanti."
@@ -1233,7 +2018,7 @@ public class SakaCalendar extends GregorianCalendar {
     }
 
 
-	/*** Fungsi menghitung zodiak ***/
+	/*** Fungsi menghitung zodiak  @return the int*/
 	public int getZodiak(){
 
 		/*
@@ -1678,6 +2463,12 @@ public class SakaCalendar extends GregorianCalendar {
 
 	}
 
+	/**
+	 * Gets saka calendar.
+	 *
+	 * @param field the field
+	 * @return the saka calendar
+	 */
 	public int getSakaCalendar(int field) {
 		if(this.tahunSaka == 0){
 			hitungSaka();
@@ -1691,14 +2482,20 @@ public class SakaCalendar extends GregorianCalendar {
 		}
 	}
 
+	/**
+	 * Gets saka calendar status.
+	 *
+	 * @param field the field
+	 * @return the saka calendar status
+	 */
 	public boolean getSakaCalendarStatus(int field) {
 		if(this.tahunSaka == 0){
 			hitungSaka();
 		}
 		switch (field){
-			case NGUNARATRI: return this.isNgunaratri;
-			case PANGELONG: return this.isPangelong;
-			case NAMPIH: return isNampih;
+			case IS_NGUNARATRI: return this.isNgunaratri;
+			case IS_PANGELONG: return this.isPangelong;
+			case IS_NAMPIH: return isNampih;
 			default: return this.isNgunaratri;
 		}
 	}
