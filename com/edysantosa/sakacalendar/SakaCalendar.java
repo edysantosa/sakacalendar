@@ -63,25 +63,6 @@ public class SakaCalendar extends GregorianCalendar {
 		this.initialize();
 	}
 
-	public SakaCalendar(int year, int month, int dayOfMonth, int hourOfDay, int minute, int second){
-		super(year, month , dayOfMonth, hourOfDay, minute, second);
-			this.initialize();
-	}
-
-	public SakaCalendar(Locale aLocale){
-		super(aLocale);
-		this.initialize();
-	}
-
-	public SakaCalendar(TimeZone zone){
-		super(zone);
-		this.initialize();
-	}
-
-	public SakaCalendar(TimeZone zone, Locale aLocale){
-		super(zone, aLocale);
-	}
-
 	private void initialize(){
 		this.pivot = getPivots(this.getTimeInMillis());
 	}
