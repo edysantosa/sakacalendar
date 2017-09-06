@@ -1522,41 +1522,142 @@ public class SakaCalendar extends GregorianCalendar {
         return noWatekMadya;
     }
 
-	/*** Fungsi menghitung eka jala rsi  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noEkaJalaRsi</code></strong>
+	 * yang merupakan representasi numerik dari Eka Jala Rsi. 1 -> Bagna mapasah, 2-> Bahu putra, dan seterusnya.</p>
+	 *
+	 * <p>Sama seperti Panca Sudha, Eka Jala Rsi merupakan penjelasan tentang baik/buruknya keberuntungan seseorang
+	 * menurut hari kelahirannya berdasarkan Sapta Wara dan Panca Wara.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Eka Jala Rsi"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Eka Jala Rsi;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Eka Jala Rsi;</th>
+	 *         </tr>
+	 *         <tr>
+	 *                <td style="text-align: center;">1</td>
+	 *                <td>Bagna mapasah</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">2</td>
+	 *                <td>Bahu putra</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">3</td>
+	 *                <td>Buat astawa</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">4</td>
+	 *                <td>Buat lara</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">5</td>
+	 *                <td>Buat merang</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">6</td>
+	 *                <td>Buat sebet</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">7</td>
+	 *                <td>Buat kingking</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">8</td>
+	 *                <td>Buat suka</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">9</td>
+	 *                <td>Dahat kingking</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">10</td>
+	 *                <td>Kamaranan</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">11</td>
+	 *                <td>Kamretaan</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">12</td>
+	 *                <td>Kasobagian</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">13</td>
+	 *                <td>Kinasihan amreta</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">14</td>
+	 *                <td>Kinasihan jana</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">15</td>
+	 *                <td>Langgeng kayohanaan</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">16</td>
+	 *                <td>Lewih bagia</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">17</td>
+	 *                <td>Manggih bagia</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">18</td>
+	 *                <td>Manggih suka</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">19</td>
+	 *                <td>Patining amreta</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">20</td>
+	 *                <td>Rahayu</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">21</td>
+	 *                <td>Sidha kasobagian</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">22</td>
+	 *                <td>Subagia</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">23</td>
+	 *                <td>Suka kapanggih</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">24</td>
+	 *                <td>Suka pinanggih</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">25</td>
+	 *                <td>Suka rahayu</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">26</td>
+	 *                <td>Tininggaling suka</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">27</td>
+	 *                <td>Wredhi putra</td>
+	 *          </tr>
+	 *          <tr>
+	 *                <td style="text-align: center;">28</td>
+	 *                <td>Wredhi sarwa mule</td>
+	 *          </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noEkaJalaRsi.
+	 */
 	public int getEkaJalaRsi(){
-
-        /*
-        * Pada SakaCalendar :
-        * 1 Bagna mapasah
-        * 2 Bahu putra
-        * 3 Buat astawa
-        * 4 Buat lara
-        * 5 Buat merang
-        * 6 Buat sebet
-        * 7 Buat kingking
-        * 8 Buat suka
-        * 9 Dahat kingking
-        * 10 Kamaranan
-        * 11 Kamretaan
-        * 12 Kasobagian
-        * 13 Kinasihan amreta
-        * 14 Kinasihan jana
-        * 15 Langgeng kayohanaan
-        * 16 Lewih bagia
-        * 17 Manggih bagia
-        * 18 Manggih suka
-        * 19 Patining amreta
-        * 20 Rahayu
-        * 21 Sidha kasobagian
-        * 22 Subagia
-        * 23 Suka kapanggih
-        * 24 Suka pinanggih
-        * 25 Suka rahayu
-        * 26 Tininggaling suka
-        * 27 Wredhi putra
-        * 28 Wredhi sarwa mule
-        */
-
         int noEkaJalaRsi=0;
         int noWuku = this.getWuku(NO_WUKU);
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
@@ -1929,48 +2030,170 @@ public class SakaCalendar extends GregorianCalendar {
         return noEkaJalaRsi;
     }
 
-	/*** Fungsi menghitung palalintangan  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noLintang</code></strong>
+	 * yang merupakan representasi numerik dari Lintang. 1 -> Gajah, 2-> Kiriman, dan seterusnya.</p>
+	 *
+	 * <p>Palalintangan juga merupakan penjelasan mengenai tabiat atau watak seseorang
+	 * menurut hari kelahirannya berdasarkan Sapta Wara dan Panca Wara.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Lintang"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Lintang;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Lintang;</th>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">1</td>
+	 *               <td>Gajah<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">2</td>
+	 *               <td>Kiriman<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">3</td>
+	 *               <td>Jong Sarat<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">4</td>
+	 *               <td>Atiwa-tiwa<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">5</td>
+	 *               <td>Sangka Tikel<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">6</td>
+	 *               <td>Bubu Bolong<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">7</td>
+	 *               <td>Sugenge<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">8</td>
+	 *               <td>Uluku/Tenggala<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">9</td>
+	 *               <td>Pedati<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">10</td>
+	 *               <td>Kuda<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">11</td>
+	 *               <td>Gajah Mina<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">12</td>
+	 *               <td>Bade<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">13</td>
+	 *               <td>Magelut<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">14</td>
+	 *               <td>Pagelangan<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">15</td>
+	 *               <td>Kala Sungsang<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">16</td>
+	 *               <td>Kukus<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">17</td>
+	 *               <td>Asu<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">18</td>
+	 *               <td>Kartika<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">19</td>
+	 *               <td>Naga<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">20</td>
+	 *               <td>Banak Angerem<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">21</td>
+	 *               <td>Hru/Panah<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">22</td>
+	 *               <td>Patrem<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">23</td>
+	 *               <td>Lembu<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">24</td>
+	 *               <td>Depat/Sidamalung<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">25</td>
+	 *               <td>Tangis<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">26</td>
+	 *               <td>Salah Ukur<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">27</td>
+	 *               <td>Perahu Pegat<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">28</td>
+	 *               <td>Puwuh Atarung<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">29</td>
+	 *               <td>Lawean/Goang<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">30</td>
+	 *               <td>Kelapa<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">31</td>
+	 *               <td>Yuyu<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">32</td>
+	 *               <td>Lumbung<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">33</td>
+	 *               <td>Kumbha<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">34</td>
+	 *               <td>Udang<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">35</td>
+	 *               <td>Begoong<td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noLintang.
+	 */
 	public int getLintang(){
-
-        /*
-        * Pada SakaCalendar :
-        * 1 Gajah
-        * 2 Kiriman
-        * 3 Jong Sarat
-        * 4 Atiwa-tiwa
-        * 5 Sangka Tikel
-        * 6 Bubu Bolong
-        * 7 Sugenge
-        * 8 Uluku/Tenggala
-        * 9 Pedati
-        * 10 Kuda
-        * 11 Gajah Mina
-        * 12 Bade
-        * 13 Magelut
-        * 14 Pagelangan
-        * 15 Kala Sungsang
-        * 16 Kukus
-        * 17 Asu
-        * 18 Kartika
-        * 19 Naga
-        * 20 Banak Angerem
-        * 21 Hru/Panah
-        * 22 Patrem
-        * 23 Lembu
-        * 24 Depat/Sidamalung
-        * 25 Tangis
-        * 26 Salah Ukur
-        * 27 Perahu Pegat
-        * 28 Puwuh Atarung
-        * 29 Lawean/Goang
-        * 30 Kelapa
-        * 31 Yuyu
-        * 32 Lumbung
-        * 33 Kumbha
-        * 34 Udang
-        * 35 Begoong
-        */
-
         int noLintang=0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
         int noPancawara = this.getPancawara(NO_PANCAWARA);
@@ -2043,20 +2266,58 @@ public class SakaCalendar extends GregorianCalendar {
 
     }
 
-	/*** Fungsi menghitung panca sudha  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noPancasudha</code></strong>
+	 * yang merupakan representasi numerik dari Panca Sudha. 1 -> Wisesa segara, 2-> Tunggak semi, dan seterusnya.</p>
+	 *
+	 * <p>Panca Sudha juga menguraikan mengenai watak seseorang menurut hari kelahirannya
+	 * berdasarkan Sapta Wara dan Panca Wara.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Panca Sudha"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Panca Sudha;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Panca Sudha;</th>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">1</td>
+	 *               <td>Wisesa segara<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">2</td>
+	 *               <td>Tunggak semi<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">3</td>
+	 *               <td>Satria wibhawa<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">4</td>
+	 *               <td>Sumur sinaba<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">5</td>
+	 *               <td>Bumi kapetak<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">6</td>
+	 *               <td>Satria wirang<td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">7</td>
+	 *               <td>Lebu katiup angin<td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noPancasudha.
+	 */
 	public int getPancasudha(){
-
-        /*
-        * Pada SakaCalendar :
-        * 1 Wisesa segara
-        * 2 Tunggak semi
-        * 3 Satria wibhawa
-        * 4 Sumur sinaba
-        * 5 Bumi kapetak
-        * 6 Satria wirang
-        * 7 Lebu katiup angin
-        */
-
         int noPancasudha = 0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
         int noPancawara = this.getPancawara(NO_PANCAWARA);
@@ -2078,25 +2339,78 @@ public class SakaCalendar extends GregorianCalendar {
         return noPancasudha;
     }
 
-	/*** Fungsi menghitung pararasan  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noPararasan</code></strong>
+	 * yang merupakan representasi numerik dari Pararasan. 1 -> Laku bumi, 2-> Laku api, dan seterusnya.</p>
+	 *
+	 * <p>Pararasan adalah penjelasan mengenai watak seseorang mengenai hari kelahirannya
+	 * berdasarkan Sapta Wara dan Panca Wara (Urip Sapta Wara + Urip Panca Wara).
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Pararasan"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Pararasan;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Pararasan;</th>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">1</td>
+	 *               <td>Laku bumi</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">2</td>
+	 *               <td>Laku api</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">3</td>
+	 *               <td>Laku angin</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">4</td>
+	 *               <td>Laku pandita sakti</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">5</td>
+	 *               <td>Aras tuding</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">6</td>
+	 *               <td>Aras kembang</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">7</td>
+	 *               <td>Laku bintang</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">8</td>
+	 *               <td>Laku bulan</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">9</td>
+	 *               <td>Laku surya</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">10</td>
+	 *               <td>Laku air/toya</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">11</td>
+	 *               <td>Laku pretiwi</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">12</td>
+	 *               <td>Laku agni agung</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noPararasan.
+	 */
 	public int getPararasan(){
-
-        /*
-        * Pada SakaCalendar :
-        * 1 Laku bumi
-        * 2 Laku api
-        * 3 Laku angin
-        * 4 Laku pandita sakti
-        * 5 Aras tuding
-        * 6 Aras kembang
-        * 7 Laku bintang
-        * 8 Laku bulan
-        * 9 Laku surya
-        * 10 Laku air/toya
-        * 11 Laku pretiwi
-        * 12 Laku agni agung
-        */
-
         int noPararasan = 0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
         int noPancawara = this.getPancawara(NO_PANCAWARA);
@@ -2128,20 +2442,60 @@ public class SakaCalendar extends GregorianCalendar {
         return noPararasan;
     }
 
-	/*** Fungsi menghitung rakam  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noRakam</code></strong>
+	 * yang merupakan representasi numerik dari Rakam. 1 -> Kala tinatang, 2-> Demang kandhuruwan, dan seterusnya.</p>
+	 *
+	 * <p>Dipercaya sebagai bagian dari perhitungan untuk menentukan hari wisuda / penobatan raja atau pimpinan.
+	 * Hasil akhirnya akan menentukan baik tidaknya sang pemimpin itu melaksanakan tugasnya.
+	 * </p>
+	 *
+	 * <p>
+	 * <em>"Dari hari Sukra diberi angka urut 1 sampai Wrespati -
+	 * kemudian dari Kliwon juga diberi angka urut sampai Wage.
+	 * Angka urutan itu dibagi dengan 6."</em>
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Rakam"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Rakam;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Rakam;</th>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">1</td>
+	 *               <td>Kala tinatang</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">2</td>
+	 *               <td>Demang kandhuruwan</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">3</td>
+	 *               <td>Sanggar waringin</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">4</td>
+	 *               <td>Mantri sinaroja</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">5</td>
+	 *               <td>Macam katawan</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">6</td>
+	 *               <td>Nuju pati</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noRakam.
+	 */
 	public int getRakam(){
-
-        /*
-        * Menggunakan rumus dari babadbali.com : "Dari hari Sukra diberi angka urut 1 sampai Wrespati - kemudian dari Kliwon juga diberi angka urut sampai Wage. Angka urutan itu dibagi dengan 6, sisanya mencerminkan sifat pimpinan yang akan dinobatkan nanti."
-        * Pada SakaCalendar menjadi :
-        * 1 Kala tinatang
-        * 2 Demang kandhuruwan
-        * 3 Sanggar waringin
-        * 4 Mantri sinaroja
-        * 5 Macam katawan
-        * 0 -> 6 Nuju pati
-        */
-
         int noRakam;
         int saptawara = 0, pancawara = 0;
         int noSaptawara = this.getSaptawara(NO_SAPTAWARA);
@@ -2172,26 +2526,76 @@ public class SakaCalendar extends GregorianCalendar {
     }
 
 
-	/*** Fungsi menghitung zodiak  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noZodiak</code></strong>
+	 * yang merupakan representasi numerik dari Rakam. 1 -> Aries, 2-> Taurus, dan seterusnya.</p>
+	 *
+	 * <em>"Saint Seiya"</em>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Rakam"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Rakam;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Rakam;</th>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">1</td>
+	 *               <td>Aries</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">2</td>
+	 *               <td>Taurus</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">3</td>
+	 *               <td>Gemini</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">4</td>
+	 *               <td>Cancer</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">5</td>
+	 *               <td>Leo</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">6</td>
+	 *               <td>Virgo</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">7</td>
+	 *               <td>Libra</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">8</td>
+	 *               <td>Scorpio</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">9</td>
+	 *               <td>Sagitarius</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">10</td>
+	 *               <td>Capricon</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">11</td>
+	 *               <td>Aquarius</td>
+	 *         </tr>
+	 *         <tr>
+	 *               <td style="text-align: center;">12</td>
+	 *               <td>Pisces</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noZodiak.
+	 */
 	public int getZodiak(){
-
-		/*
-		* Pada SakaCalendar :
-		* 1 Aries
-		* 2 Taurus
-		* 3 Gemini
-		* 4 Cancer
-		* 5 Leo
-		* 6 Virgo
-		* 7 Libra
-		* 8 Scorpio
-		* 9 Sagitarius
-		* 10 Capricon
-		* 11 Aquarius
-		* 12 Pisces
-		*/
-
-
 		int noZodiak = 0;
 		int M = this.get(Calendar.MONTH)+1;
 		int D = this.get(Calendar.DATE);
