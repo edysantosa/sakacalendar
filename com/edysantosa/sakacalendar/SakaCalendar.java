@@ -1282,20 +1282,61 @@ public class SakaCalendar extends GregorianCalendar {
 
 
 	/**
-	 * Get ingkel int.
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noIngkel</code></strong>
+	 * yang merupakan representasi numerik dari Ingkel. 1 -> Wong, 2-> Sato, dan seterusnya.</p>
 	 *
-	 * @return the int
+	 * <p>Ingkel merupakan ketentuan dalam padewasan dalam sistem Pawukon
+	 * yang merupakan pantangan-pantangan dalam melakukan suatu pekerjaan
+	 * yang berkaitan dengan ketetapannya</p>
+	 *
+	 * <p>Ingkel berlaku selama seminggu, berjalan bersama Wuku dan berlaku sepanjang Wuku tersebut.
+	 * Periodenya masing-masing 7 hari dalam siklus 6 minggu.
+	 * Untuk menghitungnya dilakukan perhitungan <code>noWuku mod 6</code>.
+	 * Hasilnya adalah jika 0=Buku (ruas), 1=Wong, 2=Sato, 3=Mina, 4=Manuk, dan 5=Taru.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Ingkel"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Ingkel</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Ingkel</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Wong</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Sato</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Mina</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Manuk</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Taru</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Buku</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * <p>Pada fungsi ini, ingkel diketahui melalui beberapa kondisi berdasarkan angkaWuku.</p>
+	 *
+	 * @return noIngkel.
 	 */
 	public int getIngkel(){
-        /*
-        * Pada SakaCalendar : 
-        * 1 Wong
-        * 2 Sato
-        * 3 Mina
-        * 4 Manuk
-        * 5 Taru
-        * 6 Buku
-        */
         int noIngkel;   
         int noWuku = this.getWuku(NO_WUKU);
         if (noWuku==1||noWuku==7||noWuku==13||noWuku==19||noWuku==25){
@@ -1315,17 +1356,59 @@ public class SakaCalendar extends GregorianCalendar {
         return noIngkel;
     }
 
-	/*** Fungsi menghitung jejepan  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noJejepan</code></strong>
+	 * yang merupakan representasi numerik dari Jejepan. 1 -> Mina, 2-> Taru, dan seterusnya.</p>
+	 *
+	 * <p>Jejepan merupakan pantangan-pantangan seperti halnya Ingkel (disebut juga Ingkel Pandakan),
+	 * namun menggunakan ketentuan Wewaran sehingga umurnya hanya satu hari.
+	 * Untuk menghitungnya dilakukan perhitungan <code>(noWuku  7 + noSaptawara) mod 6</code>.
+	 * Hasilnya adalah jika 0=Paksi (unggas), 1=Mina (ikan), 2=Taru (kayu), 3=Sato (binatang), 4=Patra (menjalar), 5=Wong (manusia).
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Jejepan"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Jejepan</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Jejepan</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Mina</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Taru</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Sato</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Patra</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Wong</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Paksi</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * <p>Pada fungsi ini, dengan menggunakan angkaWuku perhitungan
+	 * disingkat menjadi <code>angkaWuku mod 6</code></p>
+	 *
+	 * @return noJejepan.
+	 */
 	public int getJejepan(){
-        /*
-        * Pada SakaCalendar : 
-        * 1 Mina
-        * 2 taru
-        * 3 Sato
-        * 4 Patra
-        * 5 Wong
-        * 0 -> 6 Paksi
-        */
         int noJejepan;
         int angkaWuku = this.getWuku(ANGKA_WUKU);
         noJejepan = angkaWuku % 6;
@@ -1333,16 +1416,50 @@ public class SakaCalendar extends GregorianCalendar {
         return noJejepan;
     }
 
-	/*** Fungsi menghitung pewatekan alit  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noWatekAlit</code></strong>
+	 * yang merupakan representasi numerik dari Pewatekan Alit / Watek Catur. 1 -> Watek Uler, 2-> Watek Gajah, dan seterusnya.</p>
+	 *
+	 * <p>Watek Catur atau disebut juga Pewatekan Alit dan Watek Panca atau Pewatekan Madya adalah petunjuk ala-ayuning dewasa
+	 * untuk melaksanakan suatu pekerjaan/karya/yadnya, agar berhasil dengan baik
+	 * berdasarkan perhitungan Sapta Wara dan Panca Wara.</p>
+	 *
+	 * <p>Untuk menghitungnya dilakukan perhitungan <code>(uripPancawara + uripSaptawara) mod 4</code>.
+	 * Hasilnya adalah jika 0=Lintah, 1=Uler, 2=Gajah, 3=Lembu.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Watek Alit;"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Watek Alit;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Watek Alit;</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Uler</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Gajah</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Lembu</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Lintah</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noWatekAlit.
+	 */
 	public int getWatekAlit(){
-
-        /*
-        * Pada SakaCalendar :
-        * 1 Uler
-        * 2 Gajah
-        * 3 Lembu
-        * 0 -> 4 Lintah
-        */
         int noWatekAlit;
         noWatekAlit = (this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 4;
         if (noWatekAlit == 0){noWatekAlit = 4;}
@@ -1350,17 +1467,54 @@ public class SakaCalendar extends GregorianCalendar {
         return noWatekAlit;
     }
 
-	/*** Fungsi menghitung pewatekan madya  @return the int*/
+	/**
+	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noWatekMadya</code></strong>
+	 * yang merupakan representasi numerik dari Pewatekan Madya / Watek Panca. 1 -> Watek Uler, 2-> Watek Gajah, dan seterusnya.</p>
+	 *
+	 * <p>Watek Catur atau disebut juga Pewatekan Alit dan Watek Panca atau Pewatekan Madya adalah petunjuk ala-ayuning dewasa
+	 * untuk melaksanakan suatu pekerjaan/karya/yadnya, agar berhasil dengan baik
+	 * berdasarkan perhitungan Sapta Wara dan Panca Wara.</p>
+	 *
+	 * <p>Untuk menghitungnya dilakukan perhitungan <code>(uripPancawara + uripSaptawara) mod 5</code>.
+	 * Hasilnya adalah jika 0=Wong, 1=Gajah, 2=Watu, 3=Buta, 4=Suku.
+	 * </p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Watek Madya;"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No. Watek Madya;</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Watek Madya;</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Gajah</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Watu</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Buta</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Suku</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Wong</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * @return noWatekMadya.
+	 */
 	public int getWatekMadya(){
-
-        /*
-        * Pada SakaCalendar :
-        * 1 Gajah
-        * 2 Watu
-        * 3 Buta
-        * 4 Suku
-        * 0 ->5 Wong
-        */
         int noWatekMadya;
         noWatekMadya = (this.getPancawara(URIP_PANCAWARA) + this.getSaptawara(URIP_SAPTAWARA)) % 5;
         if (noWatekMadya == 0){noWatekMadya = 5;}
