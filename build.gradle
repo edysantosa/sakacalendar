@@ -3,7 +3,8 @@ version '2.0'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 sourceSets {
     main.java.srcDir("src/main")
