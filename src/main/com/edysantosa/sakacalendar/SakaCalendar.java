@@ -3022,10 +3022,130 @@ public class SakaCalendar extends GregorianCalendar {
 	}
 
 	/**
-	 * Gets saka calendar.
+	 * <h3>Penanggal/Pangelong</h3>
+	 * <p>Penanggal dimulai dari penanggal 1 yang jatuh sehari setelah tilem dan akan berakhir pada saat tilem
+	 * atau bulan mati pangelong 15. Lamanya waktu dari tilem ke purnama rata-rata 15 hari
+	 * demikian pula dari purnama ke tilem, sehingga rata-rata satu bulan tahun candra
+	 * lamanya 30 hari dan dihitung 1 Sasih.<br/>
+	 * <strong>TL;DR penanggal 15 adalah purnama, pangelong 15 adalah tilem</strong>
+	 * <p>
 	 *
-	 * @param field the field
-	 * @return the saka calendar
+	 * <p>Bulan mengelilingi bumi dalam 29 hari, 12 jam, 44 menit.
+	 * Menyadari kenyataan bahwa bulan memerlukan waktu kurang dari 30 hari untuk mengelilingi bumi,
+	 * dibuatlah sistim pangalantaka yang terjadi setiap 9 wuku, hingga dalam dua bulan
+	 * akan terdapat 1 bulan yang berumur 29 hari dan 1 bulan yang berumur 30 hari.
+	 * Pangalantaka atau lazim disebut ngunaratri adalah pematian hitungan hari
+	 * yang sebelumnya oleh hari berikutnya yang jatuh pada  wewaran dan wuku y
+	 * ang mengharuskan terjadinya ngunaratri.
+	 * Misalnya pangelong 5 menjadi pangelong 6, pananggal 9 menjadi pananggal 10 dan seterusnya.<br/>
+	 * <strong>TL;DR Pada ngunaratri terdapat 2 penanggal, pada kalender bali cetak biasanya ditampilkan seperti "5/6"</strong>
+	 * </p>
+	 *
+	 *
+	 * <h3>Sasih</h3>
+	 * <p>Dengan adanya sistem pengalantaka, maka umur satu sasih yang umumnya 30 hari bisa menjadi 29 hari,
+	 * tergantung kapan terjadinya pengalantaka yang menyebabkan panjang sasih yang bersangkutan menjadi 29 hari.
+	 * <p>
+	 * <p>Satu tahun Çaka terdiri dari 12 sasih (bulan) dengan urutannya sebagai berikut :</p>
+	 *
+	 * <table cellpadding="0" cellspacing="3" border="0"
+	 *        summary="Sasih"
+	 *        style="text-align: left; width: 66%;">
+	 *     <tbody>
+	 *         <tr>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">No Sasih</th>
+	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
+	 *           text-align: center;">Nama Sasih</th>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">1</td>
+	 *             <td>Kasa/Srawana</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">2</td>
+	 *             <td>Karo/Bhadrapada</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">3</td>
+	 *             <td>Katiga/Aswina</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">4</td>
+	 *             <td>Kapat/Kartika</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">5</td>
+	 *             <td>Kalima/Margasira</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">6</td>
+	 *             <td>Kanem/Pausya</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">7</td>
+	 *             <td>Kapitu/Magha</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">8</td>
+	 *             <td>Kawolu/Phalguna</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">9</td>
+	 *             <td>Kasanga/Caitra</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">10</td>
+	 *             <td>Kadasa/Waisakha</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">11</td>
+	 *             <td>Destha/Jyestha</td>
+	 *         </tr>
+	 *         <tr>
+	 *             <td style="text-align: center;">12</td>
+	 *             <td>Sadha/Asadha</td>
+	 *         </tr>
+	 *     </tbody>
+	 * </table>
+	 *
+	 * <p>Walaupun Sasih Kasa adalah nama sasih yang pertama, akan tetapi tahun baru Çaka jatuh pada pananggal 1 Sasih Kadasa yaitu pada hari raya Nyepi. Hari raya Nyepi selalu jatuh antara bulan Maret dan April tahun Masehi karena tahun Çaka merupakan perhitungan gabungan sistem Surya-Candra (Solar-Lunar System). Karena itu terdapat tahun panjang 383/384 hari yang terdiri dari 13 bulan Candra dan tahun pendek 345/355 hari yang terdiri dari 12 bulan Candra. Adanya bulan ke 13 ini dalam tahun Çaka disebut Nampih Sasih. Semula Kalender Çaka menyisipkan  bulan ke 13 yang disebut Pangrepeting Sasih atau Malamasa hanya pada dua Sasih yaitu setelah Sasih Destha dengan nama Mala Destha dan setelah Sasih Sadha dengan nama Mala Sadha.
+	 * </p>
+	 *
+	 * <p>Dalam rumusan Nampih Sasih Kalender Çaka semula ditetapkan tahun-tahun terjadinya Malamasa ialah :</p>
+	 *
+	 *    <ol>
+	 *        <li>Pada tahun ke 3 terjadi Mala Destha.</li>
+	 *        <li>Pada tahun ke 6 terjadi Mala Sadha.</li>
+	 *        <li>Pada tahun ke 9 terjadi Mala Destha.</li>
+	 *        <li>Pada tahun ke 11 terjadi Mala Sadha.</li>
+	 *        <li>Pada tahun ke 14 terjadi Mala Destha.</li>
+	 *        <li>Pada tahun ke 16 terjadi Mala Sadha.</li>
+	 *        <li>Pada tahun ke 19 terjadi Mala Sadha.</li>
+	 *    </ol>
+	 *
+	 * <p>Namun antara tahun 1991 hingga 2002, sempat terjadi perubahan sistem nampih sasih. Pada Mahasabha VI Parisadha Hindu Dharma Indonesia tanggal 4 - 6 Desember 1991, ditetapkan berlakunya sistem Nampih Sasih berkesinambungan dengan rumus baru yaitu bilangan Tahun Saka dibagi dengan 19, dan ditentukan nampih sasihnya dengan ketentuan :
+	 *     <ol>
+	 *         <li>Sisa 2 terjadi nampih Destha.</li>
+	 *         <li>Sisa 4 terjadi nampih Katiga.</li>
+	 *         <li>Sisa 7 terjadi nampih Kasa.</li>
+	 *         <li>Sisa 10 terjadi nampih Destha.</li>
+	 *         <li>Sisa 13 terjadi nampih Kadasa.</li>
+	 *         <li>Sisa 15 terjadi nampih Karo.</li>
+	 *         <li>Sisa 18 terjadi nampih Sadha. </li>
+	 *     </ol>
+	 * </p>
+	 *
+	 * Informasi yang bisa didapatkan dari fungsi ini antara lain:
+	 *
+	 * <p><strong><code>tahunSaka</code></strong>. Tahun Saka </p>
+	 * <p><strong><code>noSasih</code></strong>. Merupakan representasi numerik dari Sasih. e.g., 1 -> Kasa, 2-> Karo dan seterusnya.</p>
+	 * <p><strong><code>penanggal</code></strong>. Penanggal/pangelong.</p>
+	 * <p><strong><code>noNgunaratri</code></strong>. Hari yang berlalu sejak ngunaratri terakhir.</p>
+	 *
+	 *
+	 * @param field Constant yang merepresentasikan informasi yang diinginkan {@link SakaCalendar#TAHUN_SAKA TAHUN_SAKA}, {@link SakaCalendar#PENANGGAL PENANGGAL}, {@link SakaCalendar#NO_SASIH NO_SASIH}, dan {@link SakaCalendar#NO_NGUNARATRI NO_NGUNARATRI}.
+	 * @return informasi yang diinginkan.
 	 */
 	public int getSakaCalendar(int field) {
 		if(this.tahunSaka == 0){
@@ -3034,17 +3154,23 @@ public class SakaCalendar extends GregorianCalendar {
 		switch (field){
 			case TAHUN_SAKA: return this.tahunSaka;
 			case PENANGGAL: return this.penanggal;
-			case NO_NGUNARATRI: return noNgunaratri;
 			case NO_SASIH: return noSasih;
+			case NO_NGUNARATRI: return noNgunaratri;
 			default: return this.tahunSaka;
 		}
 	}
 
 	/**
-	 * Gets saka calendar status.
 	 *
-	 * @param field the field
-	 * @return the saka calendar status
+	 * Informasi yang bisa didapatkan dari fungsi ini antara lain:
+	 *
+	 * <p><strong><code>isNgunaratri</code></strong>. Jika <code>true</code> maka penanggal/pangelong pada saat itu adalah ngunaratri. e. g. penanggal/pangelong pada saat itu adalah 6, maka ditampilkan sebagai penanggal 6 dan 7. dan hari selanjutnya menjadi penanggal/pangelong 8</p>
+	 * <p><strong><code>isPangelong</code></strong>. Jika <code>true</code> maka saat itu adalah pangelong, jika <code>false<code> adalah penanggal.</p>
+	 * <p><strong><code>isNampih</code></strong>. Jika <code>true</code> maka sasih pada saat itu adalah nampih sasih. e. g. jika <code>true</code> dan nilai noSasih pada saat itu adalah Jyestha, maka sasih pada saat itu adalah Nampih Jyestha / Mala Jyestha</p>
+	 *
+	 *
+	 * @param field Constant yang merepresentasikan informasi yang diinginkan {@link SakaCalendar#IS_NGUNARATRI IS_NGUNARATRI}, {@link SakaCalendar#IS_PANGELONG IS_PANGELONG}, dan {@link SakaCalendar#IS_NAMPIH IS_NAMPIH}.
+	 * @return informasi yang diinginkan.
 	 */
 	public boolean getSakaCalendarStatus(int field) {
 		if(this.tahunSaka == 0){
