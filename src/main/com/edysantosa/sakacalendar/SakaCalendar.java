@@ -1434,9 +1434,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Watek Alit;</th>
+	 *           text-align: center;">No. Watek Alit</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Watek Alit;</th>
+	 *           text-align: center;">Watek Alit</th>
 	 *         </tr>
 	 *         <tr>
 	 *             <td style="text-align: center;">1</td>
@@ -1485,9 +1485,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Watek Madya;</th>
+	 *           text-align: center;">No. Watek Madya</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Watek Madya;</th>
+	 *           text-align: center;">Watek Madya</th>
 	 *         </tr>
 	 *         <tr>
 	 *             <td style="text-align: center;">1</td>
@@ -1536,9 +1536,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Eka Jala Rsi;</th>
+	 *           text-align: center;">No. Eka Jala Rsi</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Eka Jala Rsi;</th>
+	 *           text-align: center;">Eka Jala Rsi</th>
 	 *         </tr>
 	 *         <tr>
 	 *                <td style="text-align: center;">1</td>
@@ -2044,9 +2044,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Lintang;</th>
+	 *           text-align: center;">No. Lintang</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Lintang;</th>
+	 *           text-align: center;">Lintang</th>
 	 *         </tr>
 	 *         <tr>
 	 *               <td style="text-align: center;">1</td>
@@ -2280,9 +2280,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Panca Sudha;</th>
+	 *           text-align: center;">No. Panca Sudha</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Panca Sudha;</th>
+	 *           text-align: center;">Panca Sudha</th>
 	 *         </tr>
 	 *         <tr>
 	 *               <td style="text-align: center;">1</td>
@@ -2353,9 +2353,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Pararasan;</th>
+	 *           text-align: center;">No. Pararasan</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Pararasan;</th>
+	 *           text-align: center;">Pararasan</th>
 	 *         </tr>
 	 *         <tr>
 	 *               <td style="text-align: center;">1</td>
@@ -2462,9 +2462,9 @@ public class SakaCalendar extends GregorianCalendar {
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Rakam;</th>
+	 *           text-align: center;">No. Rakam</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Rakam;</th>
+	 *           text-align: center;">Rakam</th>
 	 *         </tr>
 	 *         <tr>
 	 *               <td style="text-align: center;">1</td>
@@ -2528,19 +2528,19 @@ public class SakaCalendar extends GregorianCalendar {
 
 	/**
 	 * <p>Informasi yang bisa didapatkan dari fungsi ini adalah <code>noZodiak</code></strong>
-	 * yang merupakan representasi numerik dari Rakam. 1 -> Aries, 2-> Taurus, dan seterusnya.</p>
+	 * yang merupakan representasi numerik dari Zodiak. 1 -> Aries, 2-> Taurus, dan seterusnya.</p>
 	 *
 	 * <em>"Saint Seiya"</em>
 	 *
 	 * <table cellpadding="0" cellspacing="3" border="0"
-	 *        summary="Rakam"
+	 *        summary="Zodiak"
 	 *        style="text-align: left; width: 66%;">
 	 *     <tbody>
 	 *         <tr>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">No. Rakam;</th>
+	 *           text-align: center;">No. Zodiak</th>
 	 *             <th style="vertical-align: top; background-color: rgb(204, 204, 255);
-	 *           text-align: center;">Rakam;</th>
+	 *           text-align: center;">Zodiak</th>
 	 *         </tr>
 	 *         <tr>
 	 *               <td style="text-align: center;">1</td>
