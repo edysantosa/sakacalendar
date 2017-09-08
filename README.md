@@ -1,11 +1,10 @@
-#sakacalendar 0.3
+[![Build Status](https://travis-ci.org/edysantosa/sakacalendar.svg?branch=master)](https://travis-ci.org/edysantosa/sakacalendar)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc6611397b434857ae326044d0a12d20)](https://www.codacy.com/app/edysantosa/sakacalendar?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edysantosa/sakacalendar&amp;utm_campaign=Badge_Grade)
 
-Copyright (c) 2012 - 2014 Edy Santosa Putra
+# SakaCalendar 2.0
+SakaCalendar adalah library kalendar Bali (Wariga) open source yang dapat memberikan informasi mengenai berbagai macam perhitungan-perhitungan yang ada dalam sistem penanggalan kalender Bali, mulai dari sasih, penanggal/pangelong, pawukon, wewaran dan lain-lainnya.
 
-sakacalendar is licensed under the GNU General Public License, version 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-
-sakacalendar adalah java package untuk melakukan perhitungan sistem penanggalan Saka.
-package ini dapat melakukan perhitungan penanggalan Saka antara lain :
+Library ini dapat melakukan perhitungan penanggalan kalendar Bali antara lain :
 - Pawukon
 - Wewaran
 - Tanggalan-Pangelong
@@ -18,41 +17,28 @@ package ini dapat melakukan perhitungan penanggalan Saka antara lain :
 - Eka Jala Rsi
 - Palalintangan
 
-
-Package ini terdiri dari class SakaCalendar yang berfungsi sebagai container atribut-atribut penanggalan saka, dan SakaCalendarCalculator yang berfungsi melakukan perhitungan atribut-atribut tersebut. 
-
 ## Penggunaan Dasar
 
-Setalah mengimport package ini inisialisasi kedua class. Inisialisasi class SakaCalendar sama dengan pada class GregorianCalendar Java. 
+Untuk meng-instantiate `SakaCalendar` dengan tanggal yang telah ditentukan, gunakan parameter (tahu, bulan, tanggal). Parameter bulan adalah berbasis 0, jadi Januari = 0, Februari = 2... dan seterusnya. Jika di-instantiate tanpa parameter maka tanggal yang didapat adalah tanggal pada hari ini.
 
 ```java
 SakaCalendar tanggal = new SakaCalendar(2014,5,1);
-SakaCalendarCalculator calc = new SakaCalendarCalculator();-
 ```
 
-Gunakan class SakaCalendarCalculator dengan cara menggunakan SakaCalendar yang telah diinisialisasi dengan value yang valid sebagai parameter untuk menghitung variabel-variabel pada SakaCalendar yakni variabel-variabel untuk Wuku, Wewaran, dan Tahun Saka. 
-
+Berikut adalah demo sederhana penggunaan library `SakaCalendar` :
 ```java
-tanggal = calc.hitungWuku(tanggal);
-tanggal = calc.hitungWewaran(tanggal);
-tanggal = calc.hitungSaka(tanggal);
-```
-
-Hasil perhitungan tersebut kemudian dapat ditampilkan
-
-```java
-SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 System.out.println("Tanggal " + sdf.format(tanggal.getTime()));
-System.out.println("No Wuku " + tanggal.noWuku);
-System.out.println("No Pancawara " + tanggal.noPancawara);
-System.out.println("No Saptawara " + tanggal.noSaptawara);
-System.out.println("Tahun Saka " + tanggal.tahunSaka);
-System.out.println("No Sasih " + tanggal.noSasih);
-System.out.println("Penanggal " + tanggal.penanggal);
-System.out.println((tanggal.isPangelong) ? "Pangelong" : "Penanggal");
-System.out.println((tanggal.isNgunaratri) ? "Ngunaratri" : "Bukan ngunaratri");
-System.out.println((tanggal.isNampih) ? "Nampih sasih" : "Bukan nampih sasih");
+System.out.println("No Wuku " + tanggal.getWuku(SakaCalendar.NO_WUKU));
+System.out.println("No Pancawara " + tanggal.getPancawara(SakaCalendar.NO_PANCAWARA));
+System.out.println("Urip Pancawara " + tanggal.getSaptawara(SakaCalendar.URIP_PANCAWARA));
+System.out.println("Tahun Saka " + tanggal.getSakaCalendar(SakaCalendar.TAHUN_SAKA));
+System.out.println("No Sasih " + tanggal.getSakaCalendar(SakaCalendar.NO_SASIH));
+System.out.println("Penanggal " + tanggal.getSakaCalendar(SakaCalendar.PENANGGAL));
+System.out.println((tanggal.getSakaCalendarStatus(SakaCalendar.IS_PANGELONG)) ? "Pangelong" : "Penanggal");
+System.out.println((tanggal.getSakaCalendarStatus(SakaCalendar.IS_NGUNARATRI)) ? "Ngunaratri" : "Bukan ngunaratri");
+System.out.println((tanggal.getSakaCalendarStatus(SakaCalendar.IS_NAMPIH)) ? "Nampih sasih" : "Bukan nampih sasih");
 ```
 
 Outputnya :
@@ -70,374 +56,424 @@ Bukan nampih sasih
 ```
 
 ## Detail Fungsi
-### Menghitung Wuku
+### Wuku
 
 ```java
-hitungWuku(SakaCalendar tgl)
+getWuku(int field)
 ```
 
-Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel noWuku dan uripWuku. Wuku Sinta - Watugunung diuurutkan dengan noWuku dari 1-30, beserta uripnya pada uripWuku 
+Parameter yang diberikan berupa constant dengan return valuenya antara lain
+* `NO_WUKU` = `noWuku` Nomor Wuku merupakan representasi numerik dari Wuku. e.g., 1 -> Sinta, 2-> Landep dan seterusnya.
+* `ANGKA_WUKU` = `angkaWuku` Adalah jumlah hari yang telah berlalu dalam wuku saat ini(1 sampai dengan 210).
+* `URIP_WUKU` = `uripWuku` Nilai urip/neptu dari Wuku.
 
-### Menghitung Wewaran
+Berikut adalah daftar tabel Wuku beserta nomor Wuku dan uripnya.
+|No Wuku|Nama Raja|Nama Wuku|Neptu/Urip|
+|--- |--- |--- |--- |
+|1|Dewi Sintakasih|Sinta|7|
+|2|Dewi Sanjiwartia|Landep|1|
+|3|Giriswara|Ukir|4|
+|4|Kuladewa|Kulantir|6|
+|5|Talu|Tolu|5|
+|6|Mrabuana|Gumbreg|8|
+|7|Waksaya|Wariga|9|
+|8|Wariwiyasa|Warigadean|3|
+|9|Mrikjulung|Julungwangi|7|
+|10|Sungsangtaya|Sungsang|1|
+|11|Dungulan|Dungulan|4|
+|12|Puspita|Kuningan|6|
+|13|Langkir|Langkir|5|
+|14|Medangsu|Medangsya|8|
+|15|Pujitpwa|Pujut|9|
+|16|Paha|Pahang|3|
+|17|Kruru|Kerulut|7|
+|18|Merangsinga|Merakih|1|
+|19|Tambur|Tambir|4|
+|20|Medangkusa|Medangkungan|6|
+|21|Matal|Matal|5|
+|22|Uye|Uye|8|
+|23|Ijala|Menahil|9|
+|24|Yuddha|Perangbakat|3|
+|25|Baliraja|Bala|7|
+|26|Wiugah|Ugu|1|
+|27|Ringgita|Wayang|4|
+|28|Kulawudra|Kelawu|6|
+|29|Sasawi|Dukut|5|
+|30|Watugunung|Watugunung|8|
+
+### Wewaran
 
 ```java
-hitungWewaran(SakaCalendar tgl)
+noEkawara    = getEkawara()
+noDwiwara    = getDwiwara()
+noTriwara    = getTriwara()
+noCaturwara  = getCaturwara()
+noPancawara  = getPancawara(SakaCalendar.NO_PANCAWARA)
+uripPancawara  = getPancawara(SakaCalendar.URIP_PANCAWARA)
+noSadwara    = getSadwara()
+noSaptawara  = getSaptawara(SakaCalendar.NO_SAPTAWARA)
+uripSaptawara  = getSaptawara(SakaCalendar.URIP_SAPTAWARA)
+noAstawara   = getAstawara()
+noSangawara  = getSangawara()
+noDasarawara = getDasawara()
 ```
 
-Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel-variabel wewaran beserta urip Saptawara dan urip Pancawara, antara lain :
-
-- uripPancawara
-- uripSaptawara
-- noEkawara
-- noDwiwara
-- noTriwara
-- noCaturwara
-- noPancawara
-- noSadwara
-- noSaptawara
-- noAstawara
-- noSangawara
-- noDasawara
-
-Selain nilai untuk urip pancawara dan saptawara yang merupakan nilai pasti, nilai integer dari no wewaran merepresentasikan data sebagai berikut :
+Semua fungsi wewaran diatas akan mereturn sebuah nilai `int` yang merepresentasikan wara-nya sesudai dengan urutan (dapat dilihat pada tabel dibawah).
+Fungsi `getPancawara` dan `getSaptawara` memerlukan parameter tambahan berupa constant. COntohh :  `getPancawara` dengan constant `NO_PANCAWARA` akan memberikan nomor waranya sedangkan constant `URIP_PANCAWARA` akan memberikan urip pancawaranya.
 
 #### Ekawara
+|No Eka Wara|Eka Wara|Urip/Neptu|
+|--- |--- |--- |
+|1|Luang|1|
 
-- 1 Pasah
-- 2 Beteng
-- 3 kajeng
 
 #### Dwiwara
+|No Dwi Wara|Dwi Wara|Urip/Neptu|
+|--- |--- |--- |
+|1|Menga|5|
+|2|Pepet|7|
 
-- 1 Luang
-- 2 Bukan luang (kosong)
 
 #### Triwara
+|No Tri Wara|Tri Wara|Urip/Neptu|
+|--- |--- |--- |
+|1|Dora/Pasah|9|
+|2|Wahya/Beteng|4|
+|3|Byantara/Kajeng|7|
 
-- 1 Menga
-- 2 Pepet
 
 #### Caturwara
-
-- 1 Sri
-- 2 Laba
-- 3 Jaya
-- 4 Menala
-
+|No Catur Wara|Catur Wara|Neptu/Urip|
+|--- |--- |--- |
+|1|Sri|4|
+|2|Laba|5|
+|3|Jaya|9|
+|4|Mandala|7|
 
 #### Pancawara
+|No Panca Wara|Panca Wara|Urip/Neptu|
+|--- |--- |--- |
+|1|Umanis|5|
+|2|Pahing|9|
+|3|Pon|7|
+|4|Wage|4|
+|5|Kliwon|8|
 
-- 1 Umanis
-- 2 Paing
-- 3 Pon
-- 4 Wage	
-- 5 Kliwon
 
 #### Sadwara
+|No. Sad Wara|Sad Wara|Neptu/Urip|
+|--- |--- |--- |
+|1|Tungleh|7|
+|2|Aryang|6|
+|3|Wurukung|5|
+|4|Paniron|8|
+|5|Was|9|
+|6|Maulu|3|
 
-- 1 Tungleh
-- 2 Aryang
-- 3 Urukung
-- 4 Paniron
-- 5 Was
-- 6 Maulu
 
 #### Saptawara
+|No Sapta Wara|Sapta Wara|Urip/Neptu|
+|--- |--- |--- |
+|0|Redite|5|
+|1|Coma|4|
+|2|Anggara|3|
+|3|Buddha|7|
+|4|Wrhaspati|8|
+|5|Sukra|6|
+|6|Saniscara|9|
 
-- 0 Redite
-- 1 Soma
-- 2 Anggara
-- 3 Buda
-- 4 Wraspati
-- 5 Sukra
-- 6 Saniscara
 
 #### Astawara
-
-- 1 Sri
-- 2 Indra
-- 3 Guru
-- 4 Yama
-- 5 Ludra
-- 6 Brahma
-- 7 kala
-- 8 Uma
+|No. Asta Wara|Asta Wara|Neptu/Urip|
+|--- |--- |--- |
+|1|Sri|6|
+|2|Indra|5|
+|3|Guru|8|
+|4|Yama|9|
+|5|Ludra|3|
+|6|Brahma|7|
+|7|Kala|1|
+|8|Uma|4|
 
 #### Sangawara
+|No. Sanga Wara|Sanga Wara|Neptu/Urip|
+|--- |--- |--- |
+|1|Dangu|9|
+|2|Jagur|8|
+|3|Gigis|6|
+|4|Nohan|7|
+|5|Ogan|4|
+|6|Erangan|5|
+|7|Urungan|7|
+|8|Tulus|3|
+|9|Dadi|4|
 
-- 1 Dangu
-- 2 Jangur
-- 3 Gigis
-- 4 Nohan
-- 5 Ogan
-- 6 Erangan
-- 7 Urungan
-- 8 Tulus
-- 9 Dadi
 
 #### Dasawara
+|No. Dasa Wara|Dasa Wara|Neptu/Urip|
+|--- |--- |--- |
+|1|Pandita|5|
+|2|Pati|7|
+|3|Suka|10|
+|4|Duka|4|
+|5|Sri|6|
+|6|Manu|2|
+|7|Manusa|3|
+|8|Raja|8|
+|9|Dewa|9|
+|10|Raksasa|1|
 
-- 1 Pandita
-- 2 Pati
-- 3 Suka
-- 4 Duka	
-- 5 Sri
-- 6 Manuh
-- 7 Manusa
-- 8 Raja
-- 9 Dewa
-- 10 Raksasa
-
-### Menghitung Wuku
-
-```java
-hitungWuku(SakaCalendar tgl)
-```
-
-Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel noWuku dan uripWuku. Wuku Sinta - Watugunung diuurutkan dengan noWuku dari 1-30, beserta uripnya pada uripWuku 
-
-
-### Menghitung Penanggalan Saka
+### Sasih
 
 ```java
-hitungSaka(SakaCalendar tgl)
+int tahunSaka    = getSakaCalendar(SakaCalendar.TAHUN_SAKA)
+int penanggal    = getSakaCalendar(SakaCalendar.PENANGGAL)
+int noSasih      = getSakaCalendar(SakaCalendar.NO_SASIH)
+int noNgunaratri = getSakaCalendar(SakaCalendar.NO_NGUNARATRI)
+
+boolean isNgunartri = getSakaCalendarStatus(SakaCalendar.IS_NGUNARATRI)
+boolean isNgunartri = getSakaCalendarStatus(SakaCalendar.IS_PANGELONG)
+boolean isNampih= getSakaCalendarStatus(SakaCalendar.IS_NAMPIH)
 ```
 
-Fungsi ini mengambil parameter SakaCalendar dan me-return SakaCalendar yang telah memiliki variabel antara lain :
+Pada fungsi `getSakaCalendar()`  parameter constant yang diberikan dengan return valuenya antara lain :
+* `TAHUN_SAKA` = `tahunSaka` Tahun Saka.
+* `NO_SASIH` = `noSasih` Merupakan representasi numerik dari Sasih. e.g., 1 -> Kasa, 2-> Karo dan seterusnya.
+* `PENANGGAL` = `penanggal` Penanggal/pangelong.
+* `NO_NGUNARATRI` = `noNgunaratri` Jumlah hari yang berlalu sejak ngunaratri terakhir.
 
-- tahunSaka
-- noSasih
-- penanggal
-- isPangelong
-- isNgunaratri
-- isNampih
+Pada fungsi `getSakaCalendarStatus()` :
+* `IS_NGUNARATRI` = `isNgunaratri` Jika `true` maka penanggal/pangelong pada saat itu adalah ngunaratri. e. g. penanggal/pangelong pada saat itu adalah 6, maka ditampilkan sebagai penanggal 6 dan 7. dan hari selanjutnya menjadi penanggal/pangelong 8.
+* `IS_PANGELONG` = `isPangelong` Jika `true` maka saat itu adalah pangelong, jika `false` adalah penanggal.
+* `IS_NAMPIH` = `isNampih` Jika `true` maka sasih pada saat itu adalah nampih sasih. e. g. jika `true` dan nilai noSasih pada saat itu adalah Jyestha, maka sasih pada saat itu adalah Nampih Jyestha / Mala Jyestha.
 
-
-tahunSaka memberikan angka Tahun Saka. 
-noSasih memberikan angka yang merepresentasikan sasih dengan nilai :
-
-- 1 Kasa
-- 2 Karo
-- 3 Katiga
-- 4 Kapat
-- 5 Kalima
-- 6 Kanem
-- 7 Kapitu
-- 8 Kawolu
-- 9 Kasanga
-- 10 Kadasa
-- 11 Destha
-- 12 Sadha
-
-penanggal memberikan angka dari penanggalan tanpa memperdulikan apakah angka tersebut Pangelong atau Penanggal. Untuk menentukannya digunakan variabel boolean isPangelong dimana jika true variabel penanggal tersebut adalah Pangelong dan sebaliknya.
-
-isNgunaratri memberikan value boolean yang menentukan apakah penanggal tersebut adalah penganggal yang Ngunaratri(Pengalantaka) dimana jika variabel isNgunaratri memberikan nilai true maka ex. jika penanggal pada hari tersebut adalah 9 maka hasil yang akan didapat pada hari selanjutnya adalah 11. Variabel ini berguna untuk menampilkan penanggal pada user interface (ex. Pangelong 10/11).
-
-isNampih memberikan value boolean yang menentukan apakah sasih pada saat tersebut adalah sasih nampih atau tidak. Jika true makah sasih pada saat itu adalah nampih sasih pada sasih sesuai dengan noSasih. Ex. Jika noSasih adalah 11 dan isNampih adalah true maka sasih tersebut adalah nampih Destha(Jyestha).
+|No Sasih|Nama Sasih|
+|--- |--- |
+|1|Kasa/Srawana|
+|2|Karo/Bhadrapada|
+|3|Katiga/Aswina|
+|4|Kapat/Kartika|
+|5|Kalima/Margasira|
+|6|Kanem/Pausya|
+|7|Kapitu/Magha|
+|8|Kawolu/Phalguna|
+|9|Kasanga/Caitra|
+|10|Kadasa/Waisakha|
+|11|Destha/Jyestha|
+|12|Sadha/Asadha|
 
 ## Fungsi-fungsi lain
 
 Fungsi fungsi lain ini dipanggil dengan paramater SakaCalendar dan akan mereturn sebuah value integer. Fungsi-fungsi ini antara lain :
 
 
-## Menghitung Ingkel
+### Menghitung Ingkel
 
 ```java
-int pararasan = calc.hitungIngkel(tanggal)
+int noIngkel = getIngkel()
 ```
-Dimana nilai return-nya :
-- 1 Wong
-- 2 Sato
-- 3 Mina
-- 4 Manuk
-- 5 Taru
-- 6 Buku
+|No. Ingkel|Ingkel|
+|--- |--- |
+|1|Wong|
+|2|Sato|
+|3|Mina|
+|4|Manuk|
+|5|Taru|
+|6|Buku|
 
-
-## Menghitung Jejepan
+### Menghitung Jejepan
 
 ```java
-int jejepan = calc.hitungJejepan(tanggal)
+int noJejepan = getJejepan()
 ```
-Dimana nilai return-nya :
-- 1 Mina
-- 2 taru
-- 3 Sato
-- 4 Patra
-- 5 Wong
-- 6 Paksi
+|No. Jejepan|Jejepan|
+|--- |--- |
+|1|Mina|
+|2|Taru|
+|3|Sato|
+|4|Patra|
+|5|Wong|
+|6|Paksi|
 
 
-## Menghitung Pewatekan Alit (Catur)
+### Menghitung Pewatekan Alit (Catur)
 
 ```java
-int watekalit = calc.hitungWatekAlit(tanggal)
+int noWatekAlit = getWatekAlit()
 ```
-Dimana nilai return-nya :
-- 1 Uler
-- 2 Gajah
-- 3 Lembu
-- 4 Lintah
+|No. Watek Alit|Watek Alit|
+|--- |--- |
+|1|Uler|
+|2|Gajah|
+|3|Lembu|
+|4|Lintah|
 
 
-## Menghitung Pewatekan Madya (Panca)
+### Menghitung Pewatekan Madya (Panca)
 
 ```java
-int watekmadya = calc.hitungWatekMadya(tanggal)
+int noWatekMadya = getWatekMadya()
 ```
-Dimana nilai return-nya :
-- 1 Gajah
-- 2 Watu
-- 3 Buta
-- 4 Suku
-- 5 Wong
+|No. Watek Madya|Watek Madya|
+|--- |--- |
+|1|Gajah|
+|2|Watu|
+|3|Buta|
+|4|Suku|
+|5|Wong|
 
 
-## Menghitung Eka Jala Rsi
+### Menghitung Eka Jala Rsi
 
 ```java
-int ekajalarsi = calc.hitungEkaJalaRsi(tanggal)
+int noEkaJalaRsi = getEkaJalaRsi()
 ```
-Dimana nilai return-nya :
-- 1 Bagna mapasah
-- 2 Bahu putra
-- 3 Buat astawa
-- 4 Buat lara
-- 5 Buat merang
-- 6 Buat sebet
-- 7 Buat kingking
-- 8 Buat suka
-- 9 Dahat kingking
-- 10 Kamaranan
-- 11 Kamretaan
-- 12 Kasobagian
-- 13 Kinasihan amreta
-- 14 Kinasihan jana
-- 15 Langgeng kayohanaan
-- 16 Lewih bagia
-- 17 Manggih bagia
-- 18 Manggih suka
-- 19 Patining amreta
-- 20 Rahayu
-- 21 Sidha kasobagian
-- 22 Subagia
-- 23 Suka kapanggih
-- 24 Suka pinanggih
-- 25 Suka rahayu
-- 26 Tininggaling suka
-- 27 Wredhi putra
-- 28 Wredhi sarwa mule
+|No. Eka Jala Rsi|Eka Jala Rsi|
+|--- |--- |
+|1|Bagna mapasah|
+|2|Bahu putra|
+|3|Buat astawa|
+|4|Buat lara|
+|5|Buat merang|
+|6|Buat sebet|
+|7|Buat kingking|
+|8|Buat suka|
+|9|Dahat kingking|
+|10|Kamaranan|
+|11|Kamretaan|
+|12|Kasobagian|
+|13|Kinasihan amreta|
+|14|Kinasihan jana|
+|15|Langgeng kayohanaan|
+|16|Lewih bagia|
+|17|Manggih bagia|
+|18|Manggih suka|
+|19|Patining amreta|
+|20|Rahayu|
+|21|Sidha kasobagian|
+|22|Subagia|
+|23|Suka kapanggih|
+|24|Suka pinanggih|
+|25|Suka rahayu|
+|26|Tininggaling suka|
+|27|Wredhi putra|
+|28|Wredhi sarwa mule|
 
-
-## Menghitung Palalintangan
+### Menghitung Palalintangan
 
 ```java
-int lintang = calc.hitungLintang(tanggal)
+int noLintang = getLintang()
 ```
-Dimana nilai return-nya :
-- 1 Gajah
-- 2 Kiriman
-- 3 Jong Sarat
-- 4 Atiwa-tiwa
-- 5 Sangka Tikel
-- 6 Bubu Bolong
-- 7 Sugenge
-- 8 Uluku/Tenggala
-- 9 Pedati
-- 10 Kuda
-- 11 Gajah Mina
-- 12 Bade
-- 13 Magelut
-- 14 Pagelangan
-- 15 Kala Sungsang
-- 16 Kukus
-- 17 Asu
-- 18 Kartika
-- 19 Naga
-- 20 Banak Angerem
-- 21 Hru/Panah
-- 22 Patrem
-- 23 Lembu
-- 24 Depat/Sidamalung
-- 25 Tangis
-- 26 Salah Ukur
-- 27 Perahu Pegat
-- 28 Puwuh Atarung
-- 29 Lawean/Goang
-- 30 Kelapa
-- 31 Yuyu
-- 32 Lumbung
-- 33 Kumbha
-- 34 Udang
-- 35 Begoong
+|No. Lintang|Lintang|
+|--- |--- |
+|1|Gajah||
+|2|Kiriman||
+|3|Jong Sarat||
+|4|Atiwa-tiwa||
+|5|Sangka Tikel||
+|6|Bubu Bolong||
+|7|Sugenge||
+|8|Uluku/Tenggala||
+|9|Pedati||
+|10|Kuda||
+|11|Gajah Mina||
+|12|Bade||
+|13|Magelut||
+|14|Pagelangan||
+|15|Kala Sungsang||
+|16|Kukus||
+|17|Asu||
+|18|Kartika||
+|19|Naga||
+|20|Banak Angerem||
+|21|Hru/Panah||
+|22|Patrem||
+|23|Lembu||
+|24|Depat/Sidamalung||
+|25|Tangis||
+|26|Salah Ukur||
+|27|Perahu Pegat||
+|28|Puwuh Atarung||
+|29|Lawean/Goang||
+|30|Kelapa||
+|31|Yuyu||
+|32|Lumbung||
+|33|Kumbha||
+|34|Udang||
+|35|Begoong||
 
 
-## Menghitung Panca Sudha
+
+### Menghitung Panca Sudha
 
 ```java
-int pancasudha = calc.hitungPancasudha(tanggal)
+int noPancasudha = getPancasudha()
 ```
-Dimana nilai return-nya :
-- 1 Wisesa segara
-- 2 Tunggak semi
-- 3 Satria wibhawa
-- 4 Sumur sinaba
-- 5 Bumi kapetak
-- 6 Satria wirang
-- 7 Lebu katiup angin
+|No. Panca Sudha|Panca Sudha|
+|--- |--- |
+|1|Wisesa segara||
+|2|Tunggak semi||
+|3|Satria wibhawa||
+|4|Sumur sinaba||
+|5|Bumi kapetak||
+|6|Satria wirang||
+|7|Lebu katiup angin||
 
-
-## Menghitung Pararasan
+### Menghitung Pararasan
 
 ```java
-int pararasan = calc.hitungPararasan(tanggal)
+int noPararasan = getPararasan()
 ```
-Dimana nilai return-nya :
-- 1 Laku bumi
-- 2 Laku api
-- 3 Laku angin
-- 4 Laku pandita sakti
-- 5 Aras tuding
-- 6 Aras kembang
-- 7 Laku bintang
-- 8 Laku bulan
-- 9 Laku surya
-- 10 Laku air/toya
-- 11 Laku pretiwi
-- 12 Laku agni agung
+|No. Pararasan;|Pararasan;|
+|--- |--- |
+|1|Laku bumi|
+|2|Laku api|
+|3|Laku angin|
+|4|Laku pandita sakti|
+|5|Aras tuding|
+|6|Aras kembang|
+|7|Laku bintang|
+|8|Laku bulan|
+|9|Laku surya|
+|10|Laku air/toya|
+|11|Laku pretiwi|
+|12|Laku agni agung|
 
 
-## Menghitung Rakam
+### Menghitung Rakam
 
 ```java
-int rakam = calc.hitungRakam(tanggal)
+int noRakam = getRakam()
 ```
-Dimana nilai return-nya :
-- 1 Kala tinatang
-- 2 Demang kandhuruwan
-- 3 Sanggar waringin
-- 4 Mantri sinaroja
-- 5 Macam katawan
-- 6 Nuju pati
+|No. Rakam;|Rakam;|
+|--- |--- |
+|1|Kala tinatang|
+|2|Demang kandhuruwan|
+|3|Sanggar waringin|
+|4|Mantri sinaroja|
+|5|Macam katawan|
+|6|Nuju pati|
+
 
 ## Menghitung Zodiak
 
 ```java
-int zodiak = calc.hitungZodiak(tanggal)
+int noZodiak = getZodiak()
 ```
-Dimana nilai return-nya :
-- 1 Aries
-- 2 Taurus
-- 3 Gemini
-- 4 Cancer
-- 5 Leo
-- 6 Virgo
-- 7 Libra
-- 8 Scorpio
-- 9 Sagitarius
-- 10 Capricon
-- 11 Aquarius
-- 12 Pisces
+|No. Zodiak|Nama Zodiak|
+|--- |--- |
+|1|Aries|
+|2|Taurus|
+|3|Gemini|
+|4|Cancer|
+|5|Leo|
+|6|Virgo|
+|7|Libra|
+|8|Scorpio|
+|9|Sagitarius|
+|10|Capricon|
+|11|Aquarius|
+|12|Pisces|
 
 
 ## Pustaka
@@ -448,10 +484,5 @@ Buku-buku yang dijadikan acuan adalah "Dasar Wariga", dan "Tenung Wariga" karang
 Selain itu juga banyak diambil informasi dari http://www.babadbali.com/, http://www.kalenderbali.org/, dan http://www.balabali.com/id/balabali-kalender-id
 
 
-## FAQ
-Q : Mengapa dibuat 2 class? Mengapa tidak dijadikan satu saja<br />
-A : Class ini awalnya dibuat untuk aplikasi android, dimana performanya tidak seperti di desktop. Jadi dibuat sebuah class container dan class untuk melakukan perhitungan kalender dengan fungsinya sendiri-sendiri sehingga hanya dilakukan perhitungan yang memang diperlukan saja demi menghemat resoruce.<br /><br />
-Q : Bagaimana caranya ikut berkontribusi?<br />
-A : Fork class ini dan lakukan pull request, atau buat sebuah issue, atau gunakan class ini untuk membuat sebuah aplikasi.<br /><br />
-Q : Bolehkah saya menggunakan class ini untuk membuat thesis/skripsi, atau aplikasi komersil?<br />
-A : Silahkan, asal masih dalam batasan lisensi GNU GPL.<br />
+
+[![Analytics](https://ga-beacon.appspot.com/UA-74411957-2/readme-page)](https://github.com/igrigorik/ga-beacon)
