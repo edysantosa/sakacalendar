@@ -68,7 +68,8 @@ Parameter yang diberikan berupa constant dengan return valuenya antara lain
 * `URIP_WUKU` = `uripWuku` Nilai urip/neptu dari Wuku.
 
 Berikut adalah daftar tabel Wuku beserta nomor Wuku dan uripnya.
-|No Wuku|Nama Raja|Nama Wuku|Neptu/Urip|
+
+|No Wuku|Nama Raja|Nama Wuku|NeptuUrip|
 |--- |--- |--- |--- |
 |1|Dewi Sintakasih|Sinta|7|
 |2|Dewi Sanjiwartia|Landep|1|
