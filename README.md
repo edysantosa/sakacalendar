@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/edysantosa/sakacalendar.svg?branch=master)](https://travis-ci.org/edysantosa/sakacalendar)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc6611397b434857ae326044d0a12d20)](https://www.codacy.com/app/edysantosa/sakacalendar?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edysantosa/sakacalendar&amp;utm_campaign=Badge_Grade)
-[![Analytics](https://ga-beacon.appspot.com/UA-74411957-2/readme-page)](https://github.com/igrigorik/ga-beacon)
 
 # SakaCalendar 2.0
 SakaCalendar adalah library kalendar Bali (Wariga) open source yang dapat memberikan informasi mengenai berbagai macam perhitungan-perhitungan yang ada dalam sistem penanggalan kalender Bali, mulai dari sasih, penanggal/pangelong, pawukon, wewaran dan lain-lainnya.
@@ -484,3 +483,6 @@ Buku-buku yang dijadikan acuan adalah "Dasar Wariga", dan "Tenung Wariga" karang
 
 Selain itu juga banyak diambil informasi dari http://www.babadbali.com/, http://www.kalenderbali.org/, dan http://www.balabali.com/id/balabali-kalender-id
 
+
+
+[![Analytics](https://ga-beacon.appspot.com/UA-74411957-2/readme-page)](https://github.com/igrigorik/ga-beacon)
