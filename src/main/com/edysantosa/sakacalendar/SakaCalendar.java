@@ -3,20 +3,6 @@
     SakaCalendar.java
     Author : Edy Santosa Putra (edy.santosa.p@gmail.com)
 
-    This file is part of sakacalendar.
-
-    sakacalendar is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, version 2.
-
-    sakacalendar is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with sakacalendar.  If not, see <http://www.gnu.org/licenses/>.
-
 */
 
 package com.edysantosa.sakacalendar;
@@ -117,7 +103,7 @@ public class SakaCalendar extends GregorianCalendar {
 	/**
 	 * Class ini digunakan sebagai parameter acuan dalam melakukan perhitungan kalender bali
 	 */
-	SakaCalendarPivot pivot;
+	private SakaCalendarPivot pivot;
 
 	private int tahunSaka;
 	private int penanggal;
@@ -209,15 +195,15 @@ public class SakaCalendar extends GregorianCalendar {
 	 */
 	private class SakaCalendarPivot extends GregorianCalendar {
 
-		int noWuku;
-		int angkaWuku;
+		public int noWuku;
+		public int angkaWuku;
 
-		int tahunSaka;
-		int noSasih;
-		int penanggal;
-		boolean isPangelong;
-		int noNgunaratri; //Jumlah hari sejak nemugelang pengalantaka
-		boolean isNgunaratri;
+		public int tahunSaka;
+		public int noSasih;
+		public int penanggal;
+		public boolean isPangelong;
+		public int noNgunaratri; //Jumlah hari sejak nemugelang pengalantaka
+		public boolean isNgunaratri;
 
 	}
 
@@ -2025,6 +2011,9 @@ public class SakaCalendar extends GregorianCalendar {
             case 6 : noEkaJalaRsi = 18;break;
             }
             break;
+		default:
+			break;
+
         }
 
         return noEkaJalaRsi;
@@ -2261,6 +2250,8 @@ public class SakaCalendar extends GregorianCalendar {
             case 5 : noLintang = 15;break;
             }
             break;
+		default:
+			break;
         }
         return noLintang;
 
