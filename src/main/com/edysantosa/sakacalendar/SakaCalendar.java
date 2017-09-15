@@ -2683,9 +2683,14 @@ public class SakaCalendar extends GregorianCalendar {
 			// Menghitung angka penanggal/pangelong, jika 0 maka diubah ke 15
 			hasilNgunaratri = bedaHari + pivot.penanggal - jumlahNgunaratri;
 
-			hasilNgunaratri = 15 - (-hasilNgunaratri%15) ;
+			hasilNgunaratri = 15 - (Math.negateExact(hasilNgunaratri)%15) ;
 
-			this.penanggal=hasilNgunaratri;
+			if (hasilNgunaratri <= 15){
+				this.penanggal=hasilNgunaratri;
+			}else{
+				this.penanggal=hasilNgunaratri%15;
+			}
+
 			// Menghitung apakah penanggal atau pangelong
 			this.isPangelong = ((((-bedaHari + this.penanggal + jumlahNgunaratri - 1) / 15) % 2) == 0) == pivot.isPangelong;
 		}
@@ -2888,6 +2893,7 @@ public class SakaCalendar extends GregorianCalendar {
 				if (this.noSasih == 0 ){this.noSasih = 12;}
 
 				this.tahunSaka = tahunSaka;
+				if(this.isNgunaratri && this.penanggal ==15){this.noSasih--;}
 				if (this.isPangelong && this.penanggal == 15 && this.isNgunaratri && this.isNampih){this.isNampih = false;} // Ubah isnampih menjadi false apabila berada di ngunaratri di awal penanggal
 			}
 		}else{
