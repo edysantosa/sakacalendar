@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class SakaCalendarTest {
 
-    SakaCalendarCalculator calc = new SakaCalendarCalculator();
+    private SakaCalendarCalculator calc = new SakaCalendarCalculator();
 
     @Test
     public void wukuShouldEqualsOldVersion() throws Exception {
